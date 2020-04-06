@@ -2,13 +2,25 @@
   "name": "tcs4rm",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "bootstrap": "^4.4.1",
+    "d3-axis": "^1.0.12",
+    "d3-interpolate": "^1.4.0",
+    "d3-scale": "^3.2.1",
+    "d3-selection": "^1.4.1",
+    "mongodb": "^3.5.5",
+    "node-sass": "^4.13.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-google-charts": "^3.0.15",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "reactstrap": "^8.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
