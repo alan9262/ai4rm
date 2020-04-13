@@ -23,9 +23,11 @@ class Tabular extends Component {
                             return ( <tr>
                                 <td>{count}</td>
                                 <td>{row.gender}</td>
-                                <td>{row.clicks}</td>
-                                <td>{row.total_conversion}</td>
+                                <td>{row.clicks.toFixed(2)}</td>
+                                <td>{row.total_conversion.toFixed(2)}</td>
                                 <td>{row.age}</td>
+                                <td>{row.time}</td>
+                                <td>{row.channel}</td>
                                 <td>{row.product_1}</td>
                                 <td>{row.product_2}</td>
                                 <td>{row.product_3}</td>
