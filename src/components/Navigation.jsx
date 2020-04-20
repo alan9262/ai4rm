@@ -30,7 +30,7 @@ export default class Navigation extends Component {
                                     <Route path='/analytics' component={App} />
                                 </Switch>
                                 <Form inline>
-                                    <Button variant="outline-info" onClick={this.toggleOpenFunction}>Logout</Button>
+                                    <Button variant="outline-info" onClick={this.props.toggleOpenFunction}>Logout</Button>
                                 </Form>
                             </Router>
                         </Navbar><br></br><br></br>

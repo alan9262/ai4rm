@@ -74,6 +74,27 @@ app.get('/getProducts', (req, res) => {
       client.close();
     });
   });
+
+  app.get('/getFeature', (req, res) => {
+    console.log('here');
+    const name = req.query.name;
+    const MongoClient = require('mongodb').MongoClient;
+    const uri = "mongodb+srv://alanmongo:alanmongo@cluster0-pjmpv.mongodb.net/test?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      var dbo = client.db("test");
+      var coll = dbo.collection("feature")
+      coll.find({}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(result);
+        // db.close();
+      });
+      // perform actions on the collection object
+      client.close();
+    });
+  });
   
 console.log("App is now listening to the port 8080!");
 app.listen(process.env.PORT || 8080);

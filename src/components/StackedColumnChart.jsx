@@ -9,7 +9,7 @@ export default class StackedColumnChart extends Component {
         var values = []
         var names = [];
         var ob = [];
-        // console.log("in stacked file ", Object.keys(stackedProducts));
+        console.log("in stacked file ", Object.keys(stackedProducts));
         for (var key of Object.keys(stackedProducts)) {
             if (key !== "_id") {
                 ob.push(key);
@@ -72,27 +72,27 @@ export default class StackedColumnChart extends Component {
             //use key and value here
           })
           names.push(list);
-        console.log(names[0])
-
+          var vals= [];
        Object.entries(names[0]).forEach(([key, value]) => {
-            console.log(key, value);
+            console.log("here alan ------ ", key, value);
             //use key and value here
+            vals.push(key, value);
           })
+          console.log("Alan ----- ", vals);
+        
             
             //use key and value here
         return (
             <Chart
-                width={'500px'}
-                height={'300px'}
+                width={'600px'}
+                height={'400px'}
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ['Product', 'Cluster 1', 'Cluster 2', 'Cluster 3'],
-                    ['food, health & cosmetics', 417, 200, 800],
-                    ['media & art', 379, 369, 500],
-                    ['leisure sport', 269, 289, 600],
-                    ['infants', 209, 195, 100],
-                    ['home, furniture & construction', 152, 151, 300],
+                    [vals[1][0], vals[1][1], vals[1][2], vals[1][3]],
+                    [ob[0], vals[5][0], vals[5][1], vals[5][2]],
+                    [ob[1], vals[9][0], vals[9][1], vals[9][2]],
+                    [ob[2], vals[13][0], vals[13][1], vals[13][2]]
                 ]}
             //    data = {names[0]}
             //    data = {Object.entries(names[0]).forEach(([key, value]) => {
@@ -103,6 +103,7 @@ export default class StackedColumnChart extends Component {
                 options={{
                     title: 'Cluster wise breakdown of products',
                     chartArea: { width: '50%' },
+                    
                     hAxis: {
                         title: 'Total Products',
                         minValue: 0,
