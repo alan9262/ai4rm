@@ -16,7 +16,9 @@ class App extends Component {
       usernames: [], passwords: [],
       loggedIn: false,
       result: [],
-      analytics: []
+      analytics: [],
+      timeBasedProducts: [],
+      confMatrix: []
     };
   }
 
@@ -27,7 +29,9 @@ class App extends Component {
       usernames: [], passwords: [],
       loggedIn: localStorage.getItem('loggedIn'),
       result: [],
-      analytics: []
+      analytics: [],
+      timeBasedProducts: [],
+      confMatrix: []
     };
   }
 
@@ -43,8 +47,8 @@ class App extends Component {
   //   })
   // }
 
-  tabClick = (e) =>{
-      console.log(e.target.value);
+  tabClick = (e) => {
+    console.log(e.target.value);
   }
 
   // componentDidMount() {
@@ -69,6 +73,8 @@ class App extends Component {
         feature: data4
       }));
 
+      console.log("Alan here", this.state.timeBasedProducts);
+      console.log("Alan herer", this.state.confMatrix);
     // fetch('/getData')
     //   .then(result => result.json())
     //   .then(result => this.setState({ result: result }))
@@ -97,7 +103,6 @@ class App extends Component {
       })
     } else {
       return (<h4>Please enter a valid password</h4>)
-
     }
   }
 
@@ -111,16 +116,19 @@ class App extends Component {
         <Navigation isLoggedIn={this.state.loggedIn} />
         {
           (this.state.loggedIn) ?
-            <div className="container" style={{padding: '8em', alignContent: 'center'}}>
+            <div style={{ padding: '8em', alignContent: 'center' }}>
               <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
-                <Tab eventKey="insight" title="Campaign Insights">
-                <h4>K-Means Clustering Analysis - Attributes for the 4Rs</h4><br></br>
+                <Tab eventKey="insight" title="Campaign Insights"><br></br>
+                  <div>
                     <Tabular headers={headers} data={data} />
+                  </div>
                 </Tab>
+                {/* <div className="container" style={{ padding: '8em', alignContent: 'center' }}></div> */}
                 <Tab eventKey="analytics" title="Data Analytics">
-                <div>
-                <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts} feature={this.state.feature} />
-                </div>
+                  <div>
+                    <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts} 
+                    feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts}/>
+                  </div>
                 </Tab>
               </Tabs>
             </div>

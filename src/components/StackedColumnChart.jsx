@@ -9,12 +9,15 @@ export default class StackedColumnChart extends Component {
         var values = []
         var names = [];
         var ob = [];
-        console.log("in stacked file ", Object.keys(stackedProducts));
-        for (var key of Object.keys(stackedProducts)) {
-            if (key !== "_id") {
-                ob.push(key);
+        console.log("here in stackedProducts", stackedProducts);
+        if(stackedProducts !== undefined || stackedProducts !== null ){
+            for (var key of Object.keys(stackedProducts)) {
+                if (key !== "_id") {
+                    ob.push(key);
+                }
             }
         }
+        
         // Object.entries(stackedProducts).forEach(entry => {
         //     console.log(entry[0]);
         //     console.log(entry[1]);

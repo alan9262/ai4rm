@@ -8,21 +8,21 @@ export default class BarChart extends Component {
         console.log("BarChart pe hun ", data);
         return (
             <Chart
-                width={'1000px'}
-                height={'500px'}
+                width={'800px'}
+                height={'300px'}
                 chartType="Bar"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ['Attributes', 'Contribution Value'],
-                    ["Age", data[0].age],
-                    ["Interest Channel", data[0].interest_channel],
-                    ["Gender", data[0].Gender],
-                    ["Session duration", data[0].session_duration_min],
-                    ["Season", data[0].Season],
-                    ["Product Category", data[0].product_category_name],
-                    ["Quantity", data[0].Product_Ordered_Quantity],
-                    ["Clicks", data[0].Clicks],
-                    ["Impression", data[0].Impression]
+                    ['Attributes', 'Contribution Value', { role: 'style' } ],
+                    ["Age", data[0].age, 'color: gray'],
+                    ["Interest Channel", data[0].interest_channel, 'color: #76A7FA'],
+                    ["Gender", data[0].Gender, 'opacity: 0.2'],
+                    ["Session duration", data[0].session_duration_min, 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],
+                    ["Season", data[0].Season, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+                    ["Product Category", data[0].product_category_name, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+                    ["Quantity", data[0].Product_Ordered_Quantity, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+                    ["Clicks", data[0].Clicks, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
+                    ["Impression", data[0].Impression, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2']
                 ]}
                 options={{
                     // Material design options
