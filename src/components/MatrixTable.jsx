@@ -18,8 +18,7 @@ export default class MatrixTable extends Component {
         if(data[0]){
             Object.entries(data[0]).forEach(([key, value]) => {
                 tableKeys.push(key);
-                valueKeys.push(value);
-    
+                valueKeys.push(Math.round(parseInt(value)));
             })
         }
 
@@ -56,7 +55,7 @@ export default class MatrixTable extends Component {
                             <td>{tableKeys[4]}</td>
                             <td>{valueKeys[4]}</td>
                         </tr>
-                        </tbody>
+                        </tbody> 
                 </Table>
             </div >
         )

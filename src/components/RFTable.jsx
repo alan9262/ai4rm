@@ -19,39 +19,39 @@ export default class RFTable extends Component {
                         
                         <tr>
                             <td>{headers[0]}</td>
-                            <td>{data.age.toFixed(2)}</td>
+                            <td>{data.age.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[1]}</td>
-                            <td>{data.interest_channel.toFixed(2)}</td>
+                            <td>{data.interest_channel.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[2]}</td>
-                            <td>{data.Gender.toFixed(2)}</td>
+                            <td>{data.Gender.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[3]}</td>
-                            <td>{data.session_duration_min.toFixed(2)}</td>
+                            <td>{data.session_duration_min.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[4]}</td>
-                            <td>{data.Season.toFixed(2)}</td>
+                            <td>{data.Season.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[5]}</td>
-                            <td>{data.product_category_name}</td>
+                            <td>{data.product_category_name.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[6]}</td>
-                            <td>{data.Product_Ordered_Quantity.toFixed(2)}</td>
+                            <td>{data.Product_Ordered_Quantity.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[7]}</td>
-                            <td>{data.Clicks.toFixed(2)}</td>
+                            <td>{data.Clicks.toFixed(4)}</td>
                         </tr>
                         <tr>
                             <td>{headers[8]}</td>
-                            <td>{data.Impression.toFixed(2)}</td>
+                            <td>{data.Impression.toFixed(4)}</td>
                         </tr>
                     </tbody>
                     : ""}

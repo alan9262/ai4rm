@@ -56,14 +56,14 @@ export default class Analytics extends Component {
                 <br></br><br></br><br></br>
                 <h4 style={{ textAlign: "center" }}>Data Analytics</h4><hr></hr>
                 <div style={{ display: '-webkit-box', position: 'relative' }}>
-                    <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} style={{ paddingLeft: '2em' }} /><br></br>
+                    {/* <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} style={{ paddingLeft: '2em' }} /><br></br> */}
                     <BarChart data={feature ? feature : null} />
                 </div>
 
-                {/* <div style={{ display: 'inline-flex' }}>
+                <div style={{ display: 'inline-flex' }}>
                     <HistoChart vals={data} X={"age"} Y={"total_conversion"} />
                     <Pie vals={data} />
-                </div><br></br> */}
+                </div><br></br>
 
                 
                 <div className="container">

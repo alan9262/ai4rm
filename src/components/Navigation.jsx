@@ -16,7 +16,7 @@ export default class Navigation extends Component {
         return (
             <div>
                 {isLoggedIn ?
-                    <div style={{ position: "fixed", width: "100%" }}>
+                    <div>
                         <Navbar bg="dark" variant="dark">
                             <Router>
                                 <Navbar.Brand href="#home"><b>TCSAI4RM</b></Navbar.Brand>&nbsp;
@@ -33,7 +33,7 @@ export default class Navigation extends Component {
                                     <Button variant="outline-info" onClick={this.props.toggleOpenFunction}>Logout</Button>
                                 </Form>
                             </Router>
-                        </Navbar><br></br><br></br>
+                        </Navbar>
                     </div> : <div><Navbar bg="dark" variant="dark">
                         <Navbar.Brand href="#home"><b>TCSAI4RM</b></Navbar.Brand>
                     </Navbar></div>}</div>

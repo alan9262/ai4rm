@@ -17,7 +17,7 @@ class Tabular extends Component {
         let tableID = 0;
         const { data, headers } = this.props;
         let stats = Math.max.apply(Math, data.map(function (o) { return [o.age, o.time, o.channel, o.predict_conver]; }))
-        let stats2 = data.filter(elem => elem.predict_conver > 0.59)
+        let stats2 = data.filter(elem => elem.predict_conver > 0.60)
         console.log("opo ", this.state.popoverOpen , "   id here ", this.state.id);
 
         
@@ -53,7 +53,7 @@ class Tabular extends Component {
                 </Popover> */}
                 <br></br>
                 <Alert color="primary">
-                    Target to sell for age group {stats2[0].age} during {stats2[0].time} through the channel {stats2[0].channel} as it has the highest prediction for conversion {stats2[0].predict_conver.toFixed(2)}
+                    Target to sell {stats2[0].product_1} for age group {stats2[0].age} during {stats2[0].time} through the channel {stats2[0].channel} as it has the highest prediction for conversion {stats2[0].predict_conver.toFixed(2)}
                 </Alert>
                 <p><b>Total number of clusters:</b> {data.length}</p>
                 <p><b>Most Bought Product Category:</b> {data !== null ? data[0].product_1 : ""}</p>
@@ -72,7 +72,7 @@ class Tabular extends Component {
                             let clusters = "Cluster_";
                             count++;
                             clusters = clusters + count + "_" + row.product_1;
-                            row.cluster = clusters;
+                            // row.cluster = clusters;
                             return (<tr>
                                 <td>{clusters}</td>
                                 <td>{row.Gender}</td>

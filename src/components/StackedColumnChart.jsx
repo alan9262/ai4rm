@@ -3,21 +3,20 @@ import { Chart } from "react-google-charts";
 
 export default class StackedColumnChart extends Component {
 
-    
+
     render() {
         const { stackedProducts } = this.props;
         var values = []
         var names = [];
         var ob = [];
         console.log("here in stackedProducts", stackedProducts);
-        if(stackedProducts !== undefined || stackedProducts !== null ){
-            for (var key of Object.keys(stackedProducts)) {
-                if (key !== "_id") {
-                    ob.push(key);
-                }
+        for (var key of Object.keys(stackedProducts)) {
+            if (key !== "_id") {
+                ob.push(key);
             }
         }
-        
+
+
         // Object.entries(stackedProducts).forEach(entry => {
         //     console.log(entry[0]);
         //     console.log(entry[1]);
@@ -59,7 +58,7 @@ export default class StackedColumnChart extends Component {
         //         }else{
         //             myMap.set(name, row[name]);
         //         }
-                
+
         //     })
         //     console.log(myMap);
         // })
@@ -68,23 +67,23 @@ export default class StackedColumnChart extends Component {
         //   })
         list.push(['Product', 'Cluster 1', 'Cluster 2', 'Cluster 3']);
         Object.entries(stackedProducts).forEach(([key, value]) => {
-            if(key !== "_id"){
+            if (key !== "_id") {
                 list.push(`${key}`, value)
                 // list.push(value);
             }
             //use key and value here
-          })
-          names.push(list);
-          var vals= [];
-       Object.entries(names[0]).forEach(([key, value]) => {
+        })
+        names.push(list);
+        var vals = [];
+        Object.entries(names[0]).forEach(([key, value]) => {
             console.log("here alan ------ ", key, value);
             //use key and value here
             vals.push(key, value);
-          })
-          console.log("Alan ----- ", vals);
-        
-            
-            //use key and value here
+        })
+        console.log("Alan ----- ", vals);
+
+
+        //use key and value here
         return (
             <Chart
                 width={'600px'}
@@ -97,16 +96,16 @@ export default class StackedColumnChart extends Component {
                     [ob[1], vals[9][0], vals[9][1], vals[9][2]],
                     [ob[2], vals[13][0], vals[13][1], vals[13][2]]
                 ]}
-            //    data = {names[0]}
-            //    data = {Object.entries(names[0]).forEach(([key, value]) => {
-            //     console.log(key, value);
-            //     //use key and value here
-            //   })}
-                
+                //    data = {names[0]}
+                //    data = {Object.entries(names[0]).forEach(([key, value]) => {
+                //     console.log(key, value);
+                //     //use key and value here
+                //   })}
+
                 options={{
                     title: 'Cluster wise breakdown of products',
                     chartArea: { width: '50%' },
-                    
+
                     hAxis: {
                         title: 'Total Products',
                         minValue: 0,
@@ -118,6 +117,7 @@ export default class StackedColumnChart extends Component {
                 // For tests
                 rootProps={{ 'data-testid': '1' }}
             />
+       
         )
     }
 }

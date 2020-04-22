@@ -59,3 +59,18 @@
   transform: rotate(-45deg);
   text-anchor: end;
 }
+
+.header-app{
+  background-image: url("../src/images/1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 5rem;
+
+}
+
+.carousel{
+  opacity: 1 !important;
+
+}

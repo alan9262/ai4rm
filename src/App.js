@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tabs, Tab } from 'react-bootstrap';
 import Tabular from '../src/components/Tabular.jsx';
 import Cookies from 'universal-cookie';
+import Example from './components/Carousel';
+import Background from '../src/images/download.jpeg'
 
 class App extends Component {
   constructor(props) {
@@ -73,8 +75,8 @@ class App extends Component {
         feature: data4
       }));
 
-      console.log("Alan here", this.state.timeBasedProducts);
-      console.log("Alan herer", this.state.confMatrix);
+    console.log("Alan here", this.state.timeBasedProducts);
+    console.log("Alan herer", this.state.confMatrix);
     // fetch('/getData')
     //   .then(result => result.json())
     //   .then(result => this.setState({ result: result }))
@@ -114,31 +116,38 @@ class App extends Component {
     return (
       <div>
         <Navigation isLoggedIn={this.state.loggedIn} />
+
         {
           (this.state.loggedIn) ?
-            <div style={{ padding: '8em', alignContent: 'center' }}>
-              <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
-                <Tab eventKey="insight" title="Campaign Insights"><br></br>
-                  <div>
-                    <Tabular headers={headers} data={data} />
-                  </div>
-                </Tab>
-                {/* <div className="container" style={{ padding: '8em', alignContent: 'center' }}></div> */}
-                <Tab eventKey="analytics" title="Data Analytics">
-                  <div>
-                    <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts} 
-                    feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts}/>
-                  </div>
-                </Tab>
-              </Tabs>
-            </div>
+            (<div>
+              <div className = "header-app" >
+                <div className="carousel">
+                  <Example />
+                </div>
+              </div>
+              <div className="container" style={{ alignContent: 'center' }}>
+
+                <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
+                  <Tab eventKey="insight" title="Campaign Insights"><br></br>
+                    <div>
+                      <Tabular headers={headers} data={data} />
+                    </div>
+                  </Tab>
+                  {/* </div> */}
+                  <Tab eventKey="analytics" title="Data Analytics">
+                    <div>
+                      <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts}
+                        feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
+                    </div>
+                  </Tab>
+                </Tabs>
+              </div></div>)
             :
             <Login onSignIn={this.signIn.bind(this)} />
         }
       </div>
     );
   }
-
 }
 
 export default App;
