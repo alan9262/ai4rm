@@ -56,7 +56,7 @@ class App extends Component {
   //   })
   // }
 
-  tabClick = (e) => {
+  tabClick = () => {
 
   }
 
@@ -139,9 +139,8 @@ class App extends Component {
                 
                 <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
                   <Tab eventKey="insight" title="Prediction Board"><br></br>
-                    <div>
+                    <div className="container" style={{ alignContent: 'center', marginLeft: '10rem' }}>
                       <Pie vals={data} />
-                      <Tabular headers={headers} data={data} />
                     </div>
                   </Tab>
                   {/* </div> */}

@@ -155,5 +155,31 @@
   text-align: center;
   max-height: 800px;
   min-height: 400px;
-  display: inline-flex;
+}
+.table-defined-matrix{
+  text-align: center;
+  max-height: 800px;
+  min-height: 400px;
+  display: -webkit-flex;
+}
+
+.text-emphasis{
+  background-color: teal;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.text-emphasis-left{
+  background-color: darkseagreen;
+  width: fit-content;
+  float: left;
+  padding: 1rem;
+}
+
+.text-emphasis-right{
+  background-color: darkseagreen;
+  width: fit-content;
+  float: right;
+  padding: 1rem;
 }

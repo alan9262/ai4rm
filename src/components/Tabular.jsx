@@ -5,7 +5,7 @@ class Tabular extends Component {
     state = {
         popoverOpen: false,
         setPopoverOpen: false,
-        id: ""
+        banner: ""
     }
     toggle = () => this.setState({setPopoverOpen: !this.state.popoverOpen});
     toggle1 = (e) => {
@@ -15,9 +15,6 @@ class Tabular extends Component {
         let count = 0;
         let tableID = 0;
         const { data, headers } = this.props;
-        let stats = Math.max.apply(Math, data.map(function (o) { return [o.age, o.time, o.channel, o.predict_conver]; }))
-        let stats2 = data.filter(elem => elem.predict_conver > 0.60)
-
         
         return (
             <div>
@@ -51,7 +48,7 @@ class Tabular extends Component {
                 </Popover> */}
                 <br></br>
                 <Alert color="primary">
-                    Target to sell {stats2[0].product_1} for age group {stats2[0].age} during {stats2[0].time} through the channel {stats2[0].channel} as it has the highest prediction for conversion {stats2[0].predict_conver.toFixed(2)}
+                    
                 </Alert>
                 {/* <p><b>Total number of clusters:</b> {data.length}</p>
                 <p><b>Most Bought Product Category:</b> {data !== null ? data[0].product_1 : ""}</p>
