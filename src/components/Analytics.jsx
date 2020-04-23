@@ -43,7 +43,6 @@ export default class Analytics extends Component {
             confMatrix: data2,
             accuracy: this.accuracy(62)
           }));
-          console.log("here ", this.state.accuracy);
     }
 
     render() {
@@ -53,35 +52,51 @@ export default class Analytics extends Component {
             "Clicks", "Impression"];
         return (
             <div>
-                <br></br><br></br><br></br>
-                <h4 style={{ textAlign: "center" }}>Data Analytics</h4><hr></hr>
-                <div style={{ display: '-webkit-box', position: 'relative' }}>
+                <br></br>
+                <div className="label-div">
+                <div className="card-label">
+                    <h5 className="card-label-text">Total cluster (segments) of users</h5> <h1 style={{textAlign: "center", color: "green"}}><br></br>{data.length}</h1>
+                    
+                </div>
+                <div className="card-label">
+                    <h5 className="card-label-text">Right Content for users</h5>
+                    <h1 style={{textAlign: "center", color: "green"}}><br></br>{data[0].product_1}</h1>
+                    
+                </div>
+                <div className="card-label">
+                    <h5 className="card-label-text">Right Channel for users</h5> <h1 style={{textAlign: "center", color: "green"}}><br></br>{data[0].channel}</h1>
+                    
+                </div>
+                <div className="card-label">
+                    <h5 className="card-label-text">Right Time for users</h5> <h1 style={{textAlign: "center", color: "green"}}><br></br>{data[0].time}</h1>
+                </div>
+                </div>
+                <div className="container table-defined">
                     {/* <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} style={{ paddingLeft: '2em' }} /><br></br> */}
                     <BarChart data={feature ? feature : null} />
                 </div>
 
-                <div style={{ display: 'inline-flex' }}>
+                <div className="container table-defined" >
                     <HistoChart vals={data} X={"age"} Y={"total_conversion"} />
-                    <Pie vals={data} />
                 </div><br></br>
 
                 
-                <div className="container">
-                    <h6 style={{ float: 'right' }}><i>Right People - Right Time - Right Channel - Right Product </i></h6>
+                <div className="container table-defined" >
+                    
                     <Tabular headers={headers} data={data ? data : null} />
                 </div>
                 <br></br>
-                <div className="container">
+                <div className="container table-defined">
                     <h4>Time Based Products (What time are we selling the most?)</h4>
                     <MatrixTable data={timeBasedProducts ? timeBasedProducts : null} />
                 </div><br></br>
 
-                <div className="container">
+                <div className="container table-defined">
                     <h4>Random Forest Analysis </h4><br></br>
                     <h6>Contribution of attributes</h6>
                     <RFTable headers={headings} data={feature ? feature[0] : null} />
                 </div><br></br>
-                <div className="container">
+                <div className="container table-defined">
                     <h6>Confusion Matrix</h6>
                     <MatrixTable flag={1} accuracy={this.accuracy.bind(this)} data={confMatrix ? confMatrix : null}/>
                 </div>

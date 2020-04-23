@@ -56,8 +56,8 @@ const Example = (props) => {
             src="holder.js/800x400?text=First slide&bg=373940"
             alt="First slide"
           /> */}
-          <h2 style={{ color: "whitesmoke", fontFamily: "'Raleway', sans-serif; !important" }}>Welcome to TCSAI4RM</h2>
-            <p>AI driven 4R Marketing</p>
+          <h2 className="carousel-text">Welcome to TCSAI4RM</h2><br></br>
+            <p className="carousel-text">AI driven 4R Marketing</p><br></br><br></br>
           {/* <Carousel.Caption>
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -69,8 +69,8 @@ const Example = (props) => {
             src="holder.js/800x400?text=Second slide&bg=282c34"
             alt="Third slide"
           /> */}
-          <h2 style={{ color: "whitesmoke", fontFamily: "'Raleway', sans-serif; !important" }}>We predict for better conversion...</h2>
-            <p className="lead">Our 4Rs - Delivering the <Button color="info">Right Product</Button> to the <Button color="info">Right Customer</Button> through the <Button color="info">Right Channel</Button> at the <Button color="info"></Button>Right Time</p>
+          <h2 className="carousel-text">We predict for better conversion...</h2><br></br>
+            <p className="carousel-text"><Button color="info">Right Product</Button> to the <Button color="info">Right Customer</Button> through the <Button color="info">Right Channel</Button> at the <Button color="info">Right Time</Button></p><br></br><br></br>
       
           {/* <Carousel.Caption>
             <h3>We predict for better conversion...</h3>
@@ -83,8 +83,8 @@ const Example = (props) => {
             src="holder.js/800x400?text=Third slide&bg=20232a"
             alt="Third slide"
           /> */}
-          <h2 style={{ color: "whitesmoke", fontFamily: "'Raleway', sans-serif; !important" }}>Explore more on how we do it!</h2>
-            <p>Scroll down...</p>
+          <h2 className="carousel-text">Explore more on how we do it!</h2><br></br>
+            <p className="carousel-text">Scroll down for more information</p><br></br><br></br>
       
           {/* <Carousel.Caption>
             

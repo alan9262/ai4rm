@@ -9,7 +9,6 @@ export default class MatrixTable extends Component {
         var tableKeys = [];
         var valueKeys = [];
         const { data, flag } = this.props;
-        console.log("matrix", this.props);
         if (flag === 1) {
             headers = ["Confusion Matrix", ""]
         } else {
@@ -30,12 +29,12 @@ export default class MatrixTable extends Component {
 
         return (
             <div>
-                <Table striped bordered hover variant="dark">
+                <Table striped bordered hover variant="success">
                     <thead>
                         
                         {flag !== 1 ? <tr>
-                            <td><b>{headers[0]}</b></td>
-                            <td><b>{headers[1]}</b></td>
+                            <th style={{background: "lightcoral"}}><b>{headers[0]}</b></th>
+                            <th style={{background: "lightcoral"}}><b>{headers[1]}</b></th>
                         </tr> : " "}
                     </thead>
                     < tbody >

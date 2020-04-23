@@ -76,12 +76,9 @@ export default class StackedColumnChart extends Component {
         names.push(list);
         var vals = [];
         Object.entries(names[0]).forEach(([key, value]) => {
-            console.log("here alan ------ ", key, value);
             //use key and value here
             vals.push(key, value);
         })
-        console.log("Alan ----- ", vals);
-
 
         //use key and value here
         return (

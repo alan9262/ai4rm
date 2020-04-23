@@ -39,10 +39,23 @@
 
 .login-form{
   width: 100%;
+  margin-top: -5rem;
+  margin-left: 40rem;
   max-width: 330px;
-  padding: 15px;
-  margin: auto;
+  position: relative;
+  /* margin: auto; */
   height: 100%;
+  transition: 0.3s;
+  width: 40%;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 0px 56px -8px rgba(0, 0, 0, 0.17);
+  border: 2px solid bisque;
+  text-align: center;
+  text-emphasis: bold;
+  padding: 2rem;
+  /* animation-name: example; */
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
 }
 
 .Axis path,
@@ -61,16 +74,86 @@
 }
 
 .header-app{
-  background-image: url("../src/images/1.jpg");
+  background-image: url("../src/images/2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  /* filter: blur(4px);
+  -webkit-filter: blur(4px); */
   text-align: center;
-  padding: 5rem;
+  padding: 10rem;
 
 }
 
-.carousel{
-  opacity: 1 !important;
+.carousel-text{
+  color: whitesmoke;
+  z-index: 2;
+  max-height: 30px;
+  min-height: 30px;
+}
 
+.carousel-text{
+  color: whitesmoke;
+  z-index: 2;
+}
+
+.signin-text{
+  color: whitesmoke;
+  z-index: 2;
+  background: brown;
+}
+
+
+
+
+.card-label {
+  
+  transition: 0.3s;
+  width: 40%;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 0px 56px -8px rgba(0, 0, 0, 0.17);
+  border: 2px solid bisque;
+  text-align: center;
+  text-emphasis: bold;
+  padding: 2rem;
+  margin: 0.5rem;
+  /* animation-name: example; */
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes example {
+  0%   {border: 2px solid blanchedalmond;}
+  25%  {border:2px solid chocolate; }
+  75%  {border:2px solid blanchedalmond; }
+  100% {border:2px solid bisque; }
+}
+
+.card-label:hover {
+  box-shadow: 2px 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.card-label-text {
+  padding: 2px 16px;
+  font-weight: bold;
+}
+
+
+.label-div{
+  display: inline-flex;
+  animation-name: label;
+  animation-duration: 4s;
+  font-family: "Quicksand", Arial, sans-serif;
+}
+
+@keyframes label {
+  from {left: 00%}
+  to {left: 80%}
+}
+
+.table-defined{
+  text-align: center;
+  max-height: 800px;
+  min-height: 400px;
+  display: inline-flex;
 }

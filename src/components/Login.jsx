@@ -20,10 +20,9 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <h1 style={{ textAlign: "center", padding: "1em" }}><b><b>TCS - AI4RM </b></b> </h1>
                 <div className="login-form">
                     <Form onSubmit={this.submit.bind(this)}>
-                        <h4 style={{ textAlign: "center" }}>Sign in</h4><hr></hr>
+                        <h4 className="signin-text">Sign in</h4><hr></hr>
                         <FormGroup>
                             <Input onChange={e => this.setState({ username: e.target.value })} type="username" placeholder="username" />
                         </FormGroup>

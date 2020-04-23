@@ -10,8 +10,8 @@ export default class RFTable extends Component {
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
-                        <td><b>{"Attribute"}</b></td>
-                            <td><b>{"Contribution Value"}</b></td>
+                        <th style={{background: "lightcoral"}}><b>{"Attribute"}</b></th>
+                            <th style={{background: "lightcoral"}}><b>{"Contribution Value"}</b></th>
                         </tr>
                     </thead>
                     {data ? 

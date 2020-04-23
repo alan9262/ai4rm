@@ -3,18 +3,25 @@ import './App.css';
 import Login from '../src/components/Login.jsx';
 import Navigation from '../src/components/Navigation.jsx';
 import Analytics from '../src/components/Analytics';
+import UserPage from '../src/components/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tabs, Tab } from 'react-bootstrap';
 import Tabular from '../src/components/Tabular.jsx';
 import Cookies from 'universal-cookie';
 import Example from './components/Carousel';
 import Background from '../src/images/download.jpeg'
-
+import Pie from '../src/components/Pie.jsx';
+import {
+  Nav,
+  Button
+} from 'reactstrap';
+const ROLES = ['customer', 'admin', 'campaign'];
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: {},
+      role: "",
       usernames: [], passwords: [],
       loggedIn: false,
       result: [],
@@ -50,7 +57,7 @@ class App extends Component {
   // }
 
   tabClick = (e) => {
-    console.log(e.target.value);
+
   }
 
   // componentDidMount() {
@@ -58,6 +65,7 @@ class App extends Component {
   //     .then(response => response.json())
   //     .then(response => this.setState({ stackedProducts: response }))
   // }
+
 
   signIn(username, password) {
     const cookies = new Cookies();
@@ -74,9 +82,6 @@ class App extends Component {
         stackedProducts: data3[0],
         feature: data4
       }));
-
-    console.log("Alan here", this.state.timeBasedProducts);
-    console.log("Alan herer", this.state.confMatrix);
     // fetch('/getData')
     //   .then(result => result.json())
     //   .then(result => this.setState({ result: result }))
@@ -88,16 +93,21 @@ class App extends Component {
     // fetch('/getStackedData')
     //   .then(response => response.json())
     //   .then(response => this.setState({ stackedProducts: response }))
-    console.log(this.state.result, "gap  ", this.state.analytics, "gappp -- ", this.state.stackedProducts);
+    let thisRole = "";
     this.state.result.map(row => {
       this.state.usernames.push(row.username);
       this.state.passwords.push(row.password);
+      console.log("role hwewe" , row.role);
+      if(row.username === username && password === row.password){
+        thisRole = row.role; 
+      }  
     })
     // localStorage.setItem('loggedIn', true);
     localStorage.setItem('username', username);
     localStorage.setItem('loggedIn', password);
     if (this.state.usernames.includes(username) && (this.state.passwords.includes(password) || cookies.get('pass') === password)) {
       this.setState({
+        role: thisRole,
         user: {
           username,
           password,
@@ -110,38 +120,39 @@ class App extends Component {
 
   render() {
     const data = this.state.analytics;
-    console.log(this.state.stackedProducts);
     const headers = ["Cluster", "Gender", "Clicks", "Age", "Time", "Channel", "Product Category 1", "Product Category 2", "Product Category 3", "Conversion Probability"];
-
+    console.log("ROLE -- ", this.state.role)
     return (
       <div>
-        <Navigation isLoggedIn={this.state.loggedIn} />
-
+        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role}/>
+        {this.state.role !== 'customer' ? (<div className="header-app" >  
+        <div className="carousel">
+            <Example />
+          </div>     
+        </div>) : ""}
         {
           (this.state.loggedIn) ?
             (<div>
-              <div className = "header-app" >
-                <div className="carousel">
-                  <Example />
-                </div>
-              </div>
+              {this.state.role === 'campaign' || this.state.role === 'admin' ? 
               <div className="container" style={{ alignContent: 'center' }}>
-
+                <br></br>
+                
                 <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
-                  <Tab eventKey="insight" title="Campaign Insights"><br></br>
+                  <Tab eventKey="insight" title="Prediction Board"><br></br>
                     <div>
+                      <Pie vals={data} />
                       <Tabular headers={headers} data={data} />
                     </div>
                   </Tab>
                   {/* </div> */}
-                  <Tab eventKey="analytics" title="Data Analytics">
+                  <Tab eventKey="analytics" title="Data Insights">
                     <div>
                       <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts}
                         feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
                     </div>
                   </Tab>
                 </Tabs>
-              </div></div>)
+              </div>: <UserPage/>}</div>)
             :
             <Login onSignIn={this.signIn.bind(this)} />
         }

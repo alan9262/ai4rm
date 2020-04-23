@@ -9,7 +9,6 @@ class Tabular extends Component {
     }
     toggle = () => this.setState({setPopoverOpen: !this.state.popoverOpen});
     toggle1 = (e) => {
-        console.log("event here  ", e);
         this.setState({id: e.target.id});
     }
     render() {
@@ -18,7 +17,6 @@ class Tabular extends Component {
         const { data, headers } = this.props;
         let stats = Math.max.apply(Math, data.map(function (o) { return [o.age, o.time, o.channel, o.predict_conver]; }))
         let stats2 = data.filter(elem => elem.predict_conver > 0.60)
-        console.log("opo ", this.state.popoverOpen , "   id here ", this.state.id);
 
         
         return (
@@ -55,15 +53,15 @@ class Tabular extends Component {
                 <Alert color="primary">
                     Target to sell {stats2[0].product_1} for age group {stats2[0].age} during {stats2[0].time} through the channel {stats2[0].channel} as it has the highest prediction for conversion {stats2[0].predict_conver.toFixed(2)}
                 </Alert>
-                <p><b>Total number of clusters:</b> {data.length}</p>
+                {/* <p><b>Total number of clusters:</b> {data.length}</p>
                 <p><b>Most Bought Product Category:</b> {data !== null ? data[0].product_1 : ""}</p>
                 <p><b>Preferred Channel:</b> {data ? data[0].channel : ""}</p>
-                <p><b>Preferred Time:</b> {data ? data[0].time : ""}</p>
+                <p><b>Preferred Time:</b> {data ? data[0].time : ""}</p> */}
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             {headers.map(header => {
-                                return <th>{header}</th>
+                                return <th style={{background: "lightcoral"}}>{header}</th>
                             })}
                         </tr>
                     </thead>

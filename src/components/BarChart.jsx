@@ -5,7 +5,6 @@ export default class BarChart extends Component {
 
     render() {
         const { data } = this.props;
-        console.log("BarChart pe hun ", data);
         return (
             <Chart
                 width={'800px'}

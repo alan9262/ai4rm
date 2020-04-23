@@ -16,27 +16,34 @@ export default class Pie extends Component {
             ['Sleep', 7],
         ];
         let data2 = [[]];
-        data2[0].push('Cluster', 'Gender');
-        vals.map( (row, index) =>{
-            data2[0].push(index, row.channel);
+        data2[0].push('Cluster', 'Value');
+        vals.map((row, index) => {
+            data2[0].push(row.product_1+"_pros", (1/vals.length)*100);
         })
-        console.log(data2);
+        console.log("data here " + data2);
         return (
             <Chart
-                width={'500px'}
-                height={'300px'}
+                width={'800px'}
+                height={'400px'}
                 chartType="PieChart"
+                is3D="true"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ['Cluster', 'Gender'],
-                    ['Cluster 1', 22],
-                    ['Cluster 2', 11],
-                    ['Cluster 3', 11]
+                    [data2[0][0], data2[0][1]],
+                    [data2[0][2], parseInt(data2[0][3])],
+                    [data2[0][4], parseInt(data2[0][5])],
+                    [data2[0][6], parseInt(data2[0][7])],
                 ]}
                 options={{
-                    title: 'My Daily Activities',
+                    title: 'Different segments of our users',
+                    legend: 'Clusters',
+                    tooltip: { trigger: 'selection' },
+                    pieSliceText: 'label',
+                    slices: {
+                        2: { offset: 0.2 }
+                    },
                 }}
-                rootProps={{ 'data-testid': '1' }}
+                rootProps={{ 'data-testid': '5' }}
             />
         )
     }
