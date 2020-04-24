@@ -97,10 +97,10 @@ class App extends Component {
     this.state.result.map(row => {
       this.state.usernames.push(row.username);
       this.state.passwords.push(row.password);
-      console.log("role hwewe" , row.role);
-      if(row.username === username && password === row.password){
-        thisRole = row.role; 
-      }  
+      console.log("role hwewe", row.role);
+      if (row.username === username && password === row.password) {
+        thisRole = row.role;
+      }
     })
     // localStorage.setItem('loggedIn', true);
     localStorage.setItem('username', username);
@@ -124,34 +124,34 @@ class App extends Component {
     console.log("ROLE -- ", this.state.role)
     return (
       <div>
-        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role}/>
-        {this.state.role !== 'customer' ? (<div className="header-app" >  
-        <div className="carousel">
+        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role} />
+        {this.state.role !== 'customer' ? (<div className="header-app" >
+          <div className="carousel">
             <Example />
-          </div>     
+          </div>
         </div>) : ""}
         {
           (this.state.loggedIn) ?
             (<div>
-              {this.state.role === 'campaign' || this.state.role === 'admin' ? 
-              <div className="container" style={{ alignContent: 'center' }}>
-                <br></br>
-                
-                <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
-                  <Tab eventKey="insight" title="Prediction Board"><br></br>
-                    <div className="container" style={{ alignContent: 'center', marginLeft: '10rem' }}>
-                      <Pie vals={data} />
-                    </div>
-                  </Tab>
-                  {/* </div> */}
-                  <Tab eventKey="analytics" title="Data Insights">
-                    <div>
-                      <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts}
-                        feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
-                    </div>
-                  </Tab>
-                </Tabs>
-              </div>: <UserPage/>}</div>)
+              {this.state.role === 'campaign' || this.state.role === 'admin' ?
+                <div className="container" style={{ alignContent: 'center' }}>
+                  <br></br>
+
+                  <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
+                    <Tab eventKey="insight" title="Prediction Board"><br></br>
+                      <div className="container" style={{ alignContent: 'center', marginLeft: '10rem' }}>
+                        <Pie vals={data} />
+                      </div>
+                    </Tab>
+                    {/* </div> */}
+                    <Tab eventKey="analytics" title="Data Insights">
+                      <div>
+                        <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts}
+                          feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
+                      </div>
+                    </Tab>
+                  </Tabs>
+                </div> : <UserPage />}</div>)
             :
             <Login onSignIn={this.signIn.bind(this)} />
         }
