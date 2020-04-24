@@ -11,18 +11,29 @@ import {
 
 export default class Navigation extends Component {
 
+    onMarketClick = () => {
+        this.props.renderPage("market");
+    }
+
+    onCustomerCLick = () => {
+        this.props.renderPage("customer");
+    }
+
     render() {
-        const { isLoggedIn } = this.props;
+        const { isLoggedIn, role } = this.props;
         return (
             <div>
                 {isLoggedIn ?
-                    <div style={{ position: "fixed", width: "100%" }}>
+                    <div>
                         <Navbar bg="dark" variant="dark">
                             <Router>
                                 <Navbar.Brand href="#home"><b>TCSAI4RM</b></Navbar.Brand>&nbsp;
                     <Nav className="mr-auto">
-                                    <Link to="/analytics">Analytics </Link>&nbsp;&nbsp;&nbsp;
-                      <Link to="/customer">Customer</Link>
+                                    {role === 'admin' ? (<span style={{ display: "inline-flex" }}>
+                                        <Button variant="outline-info" onClick={this.onMarketClick}>Marketer</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onCustomerCLick}>Customer</Button>
+                                    </span>) : ""}
+
                                 </Nav>
                                 <Switch>
                                     <Route path='/' component={Customer} />
@@ -30,10 +41,10 @@ export default class Navigation extends Component {
                                     <Route path='/analytics' component={App} />
                                 </Switch>
                                 <Form inline>
-                                    <Button variant="outline-info" onClick={this.toggleOpenFunction}>Logout</Button>
+                                    <Button variant="outline-info" onClick={this.props.toggleOpenFunction}>Logout</Button>
                                 </Form>
                             </Router>
-                        </Navbar><br></br><br></br>
+                        </Navbar>
                     </div> : <div><Navbar bg="dark" variant="dark">
                         <Navbar.Brand href="#home"><b>TCSAI4RM</b></Navbar.Brand>
                     </Navbar></div>}</div>
