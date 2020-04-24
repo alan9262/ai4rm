@@ -43,7 +43,7 @@ class UserPage extends Component {
                     <div><img className="img" src={applewatch} alt=""></img></div>
                     <div><img className="img" src={macpro} alt=""></img></div>
                 </div>
-                <label className="label">Cool Stuff</label>
+                <label className="label">Cool Products</label>
                 <div className="scrollmenu">
                     <div><img className="img" src={bed} alt=""></img></div>
                     <div><img className="img" src={coffee} alt=""></img></div>
