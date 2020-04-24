@@ -27,6 +27,7 @@ class UserPage extends Component {
     render() {
         return (
             <div>
+                <button>My Orders</button>
                 <label className="label">Fashion and Cosmetics</label>
                 <div className="scrollmenu">
                     <div><img className="img" src={chanel} alt=""></img></div>
