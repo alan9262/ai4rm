@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import { Jumbotron, Button } from 'reactstrap';
-// import {
-//     Carousel,
-//     CarouselItem,
-//     CarouselControl,
-//     CarouselIndicators,
-//     CarouselCaption
-// } from 'reactstrap';
+import { Button } from 'reactstrap';
 import Carousel from 'react-bootstrap/Carousel'
 
 

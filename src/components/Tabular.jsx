@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Alert, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import { Table } from 'reactstrap';
 
 class Tabular extends Component {
     state = {

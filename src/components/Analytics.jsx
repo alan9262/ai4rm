@@ -4,9 +4,8 @@ import RFTable from './RFTable';
 import MatrixTable from './MatrixTable';
 import HistoChart from './HistoChart';
 import StackedColumnChart from './StackedColumnChart';
-import Pie from './Pie';
 import BarChart from './BarChart';
-import { Button, Toast } from 'react-bootstrap';
+import {  Toast } from 'react-bootstrap';
 import { Container, Row, Col } from 'reactstrap';
 
 
