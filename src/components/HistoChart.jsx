@@ -5,48 +5,43 @@ export default class HistoChart extends Component {
   render() {
 
     const { vals } = this.props;
-    console.log(vals);
+    console.log("histochart" , vals);
+    let data2 = [[]];
+    Object.entries(vals).forEach(([key, value]) => {
+      //use key and value here
+      data2.push(key, value);
+  })
+  console.log("data2 ", data2)
+  var keys = [];
+  var values = [];
+//   Object.entries(data2[2]).forEach(([key, value]) => {
+//     //use key and value here
+//     keys.push(key);
+//     values.push(value);
+// })
+values[0] = data2[2] ? data2[2]["00:00 - 06:00"] : 0;
+values[1] = data2[2]? data2[2]["00:06 - 12:00"] : 0;
+values[2] = data2[2] ? data2[2]["12:00 - 18:00"] : 0;
+values[3] = data2[2] ? data2[2]["18:00 - 23:59"] : 0;
+console.log("keys ", keys);
+console.log("values ", values);
+
     return (
       <Chart
-        width={'500px'}
-        height={'300px'}
-        chartType="Histogram"
+        width={'600px'}
+        height={'400px'}
+        chartType="BarChart"
         loader={<div>Loading Chart</div>}
         data={[
-          ['Total Conversion', 'Cluster'],
-          ['Acrocanthosaurus (top-spined lizard)', 12.2],
-          ['Albertosaurus (Alberta lizard)', 9.1],
-          ['Allosaurus (other lizard)', 12.2],
-          ['Apatosaurus (deceptive lizard)', 22.9],
-          ['Archaeopteryx (ancient wing)', 0.9],
-          ['Argentinosaurus (Argentina lizard)', 36.6],
-          ['Baryonyx (heavy claws)', 9.1],
-          ['Brachiosaurus (arm lizard)', 30.5],
-          ['Ceratosaurus (horned lizard)', 6.1],
-          ['Coelophysis (hollow form)', 2.7],
-          ['Compsognathus (elegant jaw)', 0.9],
-          ['Deinonychus (terrible claw)', 2.7],
-          ['Diplodocus (double beam)', 27.1],
-          ['Dromicelomimus (emu mimic)', 3.4],
-          ['Gallimimus (fowl mimic)', 5.5],
-          ['Mamenchisaurus (Mamenchi lizard)', 21.0],
-          ['Megalosaurus (big lizard)', 7.9],
-          ['Microvenator (small hunter)', 1.2],
-          ['Ornithomimus (bird mimic)', 4.6],
-          ['Oviraptor (egg robber)', 1.5],
-          ['Plateosaurus (flat lizard)', 7.9],
-          ['Sauronithoides (narrow-clawed lizard)', 2.0],
-          ['Seismosaurus (tremor lizard)', 45.7],
-          ['Spinosaurus (spiny lizard)', 12.2],
-          ['Supersaurus (super lizard)', 30.5],
-          ['Tyrannosaurus (tyrant lizard)', 15.2],
-          ['Ultrasaurus (ultra lizard)', 30.5],
-          ['Velociraptor (swift robber)', 1.8],
+          ['Time', 'Products Sold'],
+          ['Post midnight 00:00 - 06:00', Math.round(values[0])],
+          ['Post midnight 00:06 - 12:00', Math.round(values[1])],
+          ['Afternoon 12:00 - 18:00', Math.round(values[2])],
+          ['Evening 18:00 - 23:59', Math.round(values[3])],
         ]}
         options={{
-          title: 'Lengths of dinosaurs, in meters',
-          legend: { position: 'none' },
-          colors: ['green'],
+          title: 'When are we selling most products?',
+          legend: { position: 'fixed' },
         }}
         rootProps={{ 'data-testid': '2' }}
       />

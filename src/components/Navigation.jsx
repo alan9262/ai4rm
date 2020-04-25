@@ -24,7 +24,7 @@ export default class Navigation extends Component {
     }
 
     render() {
-        const { isLoggedIn, role } = this.props;
+        const { isLoggedIn, role, user } = this.props;
         return (
             <div>
                 {isLoggedIn ?
@@ -40,6 +40,7 @@ export default class Navigation extends Component {
 
                                 </Nav>
                                 <Form inline>
+                                        <h6 style={{color: "aliceblue", margin: "auto"}}>Welcome, {user}!</h6>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <Button variant="outline-info" onClick={this.toggle.bind(this)}>Logout</Button>
                                 </Form>
                             </Router>

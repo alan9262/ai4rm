@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Chart } from "react-google-charts";
 
-export default class BarChart extends Component {
+export default class BarChart extends PureComponent {
 
     render() {
         const { data } = this.props;
         return (
             <Chart
-                width={'800px'}
-                height={'300px'}
-                chartType="Bar"
+                width={'600px'}
+                height={'400px'}
+                chartType="ColumnChart"
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Attributes', 'Contribution Value', { role: 'style' } ],
                     ["Age", data[0].age, 'color: gray'],
-                    ["Interest Channel", data[0].interest_channel, 'color: #76A7FA'],
-                    ["Gender", data[0].Gender, 'opacity: 0.2'],
-                    ["Session duration", data[0].session_duration_min, 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],
-                    ["Season", data[0].Season, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
-                    ["Product Category", data[0].product_category_name, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
-                    ["Quantity", data[0].Product_Ordered_Quantity, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
-                    ["Clicks", data[0].Clicks, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2'],
-                    ["Impression", data[0].Impression, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2']
+                    ["Interest Channel", data[0].interest_channel, 'color: gray'],
+                    ["Gender", data[0].Gender, 'color: gray'],
+                    ["Session duration", data[0].session_duration_min, 'color: gray'],
+                    ["Season", data[0].Season, 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],
+                    ["Product Category", data[0].product_category_name, 'color: #76A7FA'],
+                    ["Quantity", data[0].Product_Ordered_Quantity, 'color: #76A7FA'],
+                    ["Clicks", data[0].Clicks, 'color: #76A7FA'],
+                    ["Impression", data[0].Impression, 'color: #76A7FA']
                 ]}
                 options={{
                     // Material design options
@@ -29,8 +29,21 @@ export default class BarChart extends Component {
                         title: 'Random Forest Attribute Significance',
                         subtitle: 'How each attribute contributes to a prediction',
                     },
-                }}
-                // For tests
+                    animation: {
+                        startup: true,
+                        easing: 'linear',
+                        duration: 1500,
+                      },
+                      enableInteractivity: false,
+                    }}
+                    chartEvents={[
+                      {
+                        eventName: 'animationfinish',
+                        callback: () => {
+                          console.log('Animation Finished')
+                        },
+                      },
+                    ]}
                 rootProps={{ 'data-testid': '2' }}
             />
 

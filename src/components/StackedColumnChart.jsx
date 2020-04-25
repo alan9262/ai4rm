@@ -6,68 +6,47 @@ export default class StackedColumnChart extends Component {
 
     render() {
         const { stackedProducts } = this.props;
-        var values = []
+        var values = [" lovers", " buyers", " pros"]
         var names = [];
+        var ob1 = [];
         var ob = [];
+        let i =0;
         console.log("here in stackedProducts", stackedProducts);
         for (var key of Object.keys(stackedProducts)) {
             if (key !== "_id") {
-                ob.push(key);
+                ob1.push(key + values[i]);
+                i++;
             }
         }
 
+        var products = stackedProducts;
+        delete products["_id"];
+        console.log("products  ", products);
 
-        // Object.entries(stackedProducts).forEach(entry => {
-        //     console.log(entry[0]);
-        //     console.log(entry[1]);
-        //     //use key and value here
-        //   });
+        // let coolStuff = Object.values(products).reduce((t, {Cool Stuff}) => t + value, 0)
 
-        // var output = {
-        //     fieldName: "",
-        //     fieldValue: []
-        // };
+        var myMap = new Map();
+        let j = 0;
+        for (let cluster in products) {
+            ob.push(cluster + values[j++]);
+            for (let category in cluster) {
+                
+                // console.log("category  ", category);
+                if (!myMap.get(category)) {
+                    myMap.set(category, [cluster[category]]);
+                } else {
+                    let list = [];
+                    myMap.set(category, list.push(myMap.get(category), (cluster[category])));
+                }
+            }
 
-        // ob.forEach(function (item) {
-        //     var existing = output.filter(function (v, i) {
-        //         return v.name == item.name;
-        //     });
-        //     if (existing.length) {
-        //         var existingIndex = output.indexOf(existing[0]);
-        //         output[existingIndex].value = output[existingIndex].value.concat(item.value);
-        //     } else {
-        //         if (typeof item.value == 'string')
-        //             item.value = [item.value];
-        //         output.push(item);
-        //     }
-        // });
-        // console.log(ob);
-        // for (let [key, value] of Object.entries(ob)) {
-        //     console.log(`${key}: ${value[0]}`);
-        //   }
-        let myMap = new Map();
+        }
+        console.log("myMap  ", myMap);
         let list = [];
-        // ob.map((row) =>{
-        //     names.map(name =>{
-        //         if(myMap.has(name)){
-        //             let tmpList = [];
-        //             console.log(myMap.get(name));
-        //             tmpList.push(myMap.get(name));
-        //             tmpList.find(myMap.get(name)).push(row[name]);
-        //             myMap.set(name, tmpList);
-        //         }else{
-        //             myMap.set(name, row[name]);
-        //         }
 
-        //     })
-        //     console.log(myMap);
-        // })
-        // myMap.forEach((value, key) => {
-        //     list.push(key, value);
-        //   })
         list.push(['Product', 'Cluster 1', 'Cluster 2', 'Cluster 3']);
         Object.entries(stackedProducts).forEach(([key, value]) => {
-            if (key !== "_id") {
+            if (key == "_id") {
                 list.push(`${key}`, value)
                 // list.push(value);
             }
@@ -75,11 +54,20 @@ export default class StackedColumnChart extends Component {
         })
         names.push(list);
         var vals = [];
+        var data1 = [[]];
+        data1[0].push(list);
+
         Object.entries(names[0]).forEach(([key, value]) => {
             //use key and value here
             vals.push(key, value);
         })
-
+        // data={[
+        //     ["Product", ob[0], ob[1], ob[2]],
+        //     [ob[0], vals[5][0], vals[5][1], vals[5][2]],
+        //     [ob[1], vals[9][0], vals[9][1], vals[9][2]],
+        //     [ob[2], vals[13][0], vals[13][1], vals[13][2]]
+        // ]}
+        console.log("vals   ", vals, ob);
         //use key and value here
         return (
             <Chart
@@ -88,16 +76,11 @@ export default class StackedColumnChart extends Component {
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    [vals[1][0], vals[1][1], vals[1][2], vals[1][3]],
-                    [ob[0], vals[5][0], vals[5][1], vals[5][2]],
-                    [ob[1], vals[9][0], vals[9][1], vals[9][2]],
-                    [ob[2], vals[13][0], vals[13][1], vals[13][2]]
+                    ["Product", ob[0], ob[1], ob[2]],
+                    [ob[0], stackedProducts["Cluster 1"]["Cool Stuff"], stackedProducts["Cluster 2"]["Cool Stuff"], stackedProducts["Cluster 3"]["Cool Stuff"]],
+                    [ob[1], stackedProducts["Cluster 1"]["Fashion"], stackedProducts["Cluster 2"]["Fashion"], stackedProducts["Cluster 3"]["Fashion"]],
+                    [ob[2], stackedProducts["Cluster 1"]["Mobile"], stackedProducts["Cluster 2"]["Mobile"], stackedProducts["Cluster 3"]["Mobile"]],
                 ]}
-                //    data = {names[0]}
-                //    data = {Object.entries(names[0]).forEach(([key, value]) => {
-                //     console.log(key, value);
-                //     //use key and value here
-                //   })}
 
                 options={{
                     title: 'Cluster wise breakdown of products',
@@ -110,11 +93,31 @@ export default class StackedColumnChart extends Component {
                     vAxis: {
                         title: 'Product Categories',
                     },
+                    bars: 'horizontal',
+                    axes: {
+                        y: {
+                            0: { side: 'right' },
+                        },
+                    },
+                    animation: {
+                        startup: true,
+                        easing: 'linear',
+                        duration: 1000,
+                    },
+                    enableInteractivity: false,
                 }}
+                chartEvents={[
+                    {
+                        eventName: 'animationfinish',
+                        callback: () => {
+                            console.log('Animation Finished')
+                        },
+                    },
+                ]}
                 // For tests
                 rootProps={{ 'data-testid': '1' }}
             />
-       
+
         )
     }
 }

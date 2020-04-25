@@ -6,7 +6,8 @@ import HistoChart from './HistoChart';
 import StackedColumnChart from './StackedColumnChart';
 import Pie from './Pie';
 import BarChart from './BarChart';
-import { Button } from 'react-bootstrap';
+import { Button, Toast } from 'react-bootstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 
 export default class Analytics extends Component {
@@ -17,8 +18,10 @@ export default class Analytics extends Component {
     }
 
     accuracy(acc) {
-        return (acc.toFixed(2) * 100 + "%");
-    }
+        this.setState({
+            accuracy: (acc.toFixed(2) * 100)
+    })
+}
 
     componentDidMount() {
         Promise.all([
@@ -51,10 +54,25 @@ export default class Analytics extends Component {
         let headings = ["Age", "Interest Channel", "Gender", "Session duration", "Season", "Product Category", "Quantity",
             "Clicks", "Impression"];
         return (
-            
+
             <div>
+                <br></br><br></br>
+                <div className="toast-class">
+                    <Toast animation={true} bsPrefix="toast-class" style={{
+                        display: "table-header-group",
+                        margin: '2rem'
+                    }}>
+                        <Toast.Header closeButton={false} closeLabel={'Close'}>
+                            <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+                            <strong className="mr-auto">Market Prediction</strong>
+                            <small>based on below insights</small>
+                        </Toast.Header>
+                        <Toast.Body><b>Target </b>: {data[0].age} group for {data[0].product_1} at {data[0].time} through {data[0].channel}. </Toast.Body>
+                    </Toast>
+                </div>
                 <br></br>
                 <div className="label-div">
+
                     <div className="card-label">
                         <h5 className="card-label-text">Total cluster (segments) of users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data.length}</h1>
 
@@ -71,19 +89,37 @@ export default class Analytics extends Component {
                     <div className="card-label">
                         <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].time}</h1>
                     </div>
-                </div>
-                <div className="container table-defined">
-                    {/* <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} style={{ paddingLeft: '2em' }} /><br></br> */}
-                    <BarChart data={feature ? feature : null} />
+                </div><hr></hr>
+                <Container>
+                        <Row>
+                            <Col xs={6} md={6}>
+                                <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} />
+                            </Col>
+                            <Col xs={6} md={6}>
+                                <HistoChart vals={timeBasedProducts} X={"age"} Y={"total_conversion"} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={6} md={6}>
+                            <BarChart data={feature ? feature : null} />
+                            </Col>
+                        </Row>
+
+                    </Container>
+                {/* <div className="table-defined-box">
+                    
+
+
                 </div>
 
                 <div className="container table-defined" >
-                    <HistoChart vals={data} X={"age"} Y={"total_conversion"} />
-                </div><br></br>
+
+                    
+                </div><br></br><hr></hr> */}
 
 
                 <div className="container table-defined" >
-                <h4 className="text-emphasis">k-means clustering (Segments of users based on dataset!)</h4>
+                    <h4 className="text-emphasis">k-means clustering (Segments of users based on dataset!)</h4>
                     <Tabular headers={headers} data={data ? data : null} />
                 </div>
                 <br></br>
@@ -91,13 +127,14 @@ export default class Analytics extends Component {
                 <div className="container table-defined">
                     <h4 className="text-emphasis">Time Based Products (What time are we selling the most?)</h4>
                     <MatrixTable data={timeBasedProducts ? timeBasedProducts : null} />
-                </div><br></br>
+                </div><br></br><hr></hr>
 
                 <div className="container table-defined ">
-       
-                        <h4 className="text-emphasis">Random Forest Analysis </h4>
-                        <h6 className="text-emphasis-left" >Contribution of attributes</h6>
-                        <h6 className="text-emphasis-right">Confusion Matrix</h6>
+
+                    <h4 className="text-emphasis">Random Forest Analysis </h4>
+            {confMatrix? <div className="card-label">Accuracy: {this.state.accuracy}</div> : ""}
+                    <h6 className="text-emphasis-left" >Contribution of attributes</h6>
+                    <h6 className="text-emphasis-right">Confusion Matrix</h6>
                     <div>
                         <div style={{ float: 'left' }}><RFTable headers={headings} data={feature ? feature[0] : null} /></div>
                         <div style={{ float: 'right' }}><MatrixTable flag={1} accuracy={this.accuracy.bind(this)} data={confMatrix ? confMatrix : null} /></div>

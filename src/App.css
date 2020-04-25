@@ -104,10 +104,8 @@
 }
 
 
-
-
 .card-label {
-  
+  background: seashell;
   transition: 0.3s;
   width: 40%;
   border-radius: 5px 5px 0 0;
@@ -151,10 +149,23 @@
   to {left: 80%}
 }
 
+.toast-class{
+  display: table-header-group;
+  padding: 2rem;
+}
+
 .table-defined{
   text-align: center;
   max-height: 800px;
   min-height: 400px;
+}
+
+.table-defined-box{
+  display: inline-flex;
+  max-height: 400px;
+  max-width: 400px;
+  min-height: 400px;
+  min-width: 600px
 }
 .table-defined-matrix{
   text-align: center;
@@ -163,8 +174,11 @@
   display: -webkit-flex;
 }
 
+.tooltip-list{
+  text-emphasis: bold;
+}
 .text-emphasis{
-  background-color: teal;
+  background-color: bisque;
   padding: 1rem;
   margin-bottom: 2rem;
   align-items: center;
