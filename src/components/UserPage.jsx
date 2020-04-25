@@ -29,7 +29,8 @@ class UserPage extends Component {
         return (
             <div>
                 {log ?
-                    (<div><label className="label">Fashion and Cosmetics</label>
+                    (<div><button>My Orders</button>
+                    <label className="label">Fashion and Cosmetics</label>
                         <div className="scrollmenu">
                             <div><img className="img" src={chanel} alt=""></img></div>
                             <div><img className="img" src={lacome} alt=""></img></div>

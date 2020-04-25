@@ -7,7 +7,6 @@ import UserPage from '../src/components/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tabs, Tab } from 'react-bootstrap';
 import Pie from '../src/components/Pie.jsx';
-
 class App extends Component {
   constructor(props) {
     super(props);
