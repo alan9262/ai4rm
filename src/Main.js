@@ -165,7 +165,7 @@ class Main extends Component {
                             : "Chart is loading..."}
                         </div>
                       </Tab>
-                      <Tab eventKey="analytics" title="Data Insights">
+                      <Tab eventKey="analytics" title="Data Insights" unmountOnExit={false}>
                         <div>
                           <Analytics rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
                             feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
