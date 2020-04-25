@@ -20,37 +20,40 @@ import slippers from '../images/slippers.jpg';
 import dyson from '../images/dyson.jpg';
 
 
-
-
-
 class UserPage extends Component {
     render() {
+        let log = true;
+        if(this.props.log){
+            log = this.props.log;
+        }
         return (
             <div>
-                <label className="label">Fashion and Cosmetics</label>
-                <div className="scrollmenu">
-                    <div><img className="img" src={chanel} alt=""></img></div>
-                    <div><img className="img" src={lacome} alt=""></img></div>
-                    <div><img className="img" src={guerlain} alt=""></img></div>
-                    <div><img className="img" src={organic_oil} alt=""></img></div>
-                    <div><img className="img" src={beautycounter} alt=""></img></div>
-                </div>
-                <label className="label">Mobile and Eletronics</label>
-                <div className="scrollmenu">
-                    <div><img className="img" src={iphone11} alt=""></img></div>
-                    <div><img className="img" src={iphone11white} alt=""></img></div>
-                    <div><img className="img" src={ipad} alt=""></img></div>
-                    <div><img className="img" src={applewatch} alt=""></img></div>
-                    <div><img className="img" src={macpro} alt=""></img></div>
-                </div>
-                <label className="label">Cool Stuff</label>
-                <div className="scrollmenu">
-                    <div><img className="img" src={bed} alt=""></img></div>
-                    <div><img className="img" src={coffee} alt=""></img></div>
-                    <div><img className="img" src={cuddly} alt=""></img></div>
-                    <div><img className="img" src={slippers} alt=""></img></div>
-                    <div><img className="img" src={dyson} alt=""></img></div>
-                </div>
+                {log ?
+                    (<div><label className="label">Fashion and Cosmetics</label>
+                        <div className="scrollmenu">
+                            <div><img className="img" src={chanel} alt=""></img></div>
+                            <div><img className="img" src={lacome} alt=""></img></div>
+                            <div><img className="img" src={guerlain} alt=""></img></div>
+                            <div><img className="img" src={organic_oil} alt=""></img></div>
+                            <div><img className="img" src={beautycounter} alt=""></img></div>
+                        </div>
+                        <label className="label">Mobile and Eletronics</label>
+                        <div className="scrollmenu">
+                            <div><img className="img" src={iphone11} alt=""></img></div>
+                            <div><img className="img" src={iphone11white} alt=""></img></div>
+                            <div><img className="img" src={ipad} alt=""></img></div>
+                            <div><img className="img" src={applewatch} alt=""></img></div>
+                            <div><img className="img" src={macpro} alt=""></img></div>
+                        </div>
+                        <label className="label">Cool Stuff</label>
+                        <div className="scrollmenu">
+                            <div><img className="img" src={bed} alt=""></img></div>
+                            <div><img className="img" src={coffee} alt=""></img></div>
+                            <div><img className="img" src={cuddly} alt=""></img></div>
+                            <div><img className="img" src={slippers} alt=""></img></div>
+                            <div><img className="img" src={dyson} alt=""></img></div>
+                        </div></div>)
+                    : ""}
             </div>
         )
     }

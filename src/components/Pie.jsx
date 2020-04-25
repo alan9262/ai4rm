@@ -7,22 +7,16 @@ export default class Pie extends Component {
 
     render() {
         const { vals } = this.props;
-        let data = [
-            ['Task', 'Hours per Day'],
-            ['Work', 11],
-            ['Eat', 2],
-            ['Commute', 2],
-            ['Watch TV', 2],
-            ['Sleep', 7],
-        ];
-        let data2 = [[]];
-        let clusterMessages = [];
-        data2[0].push('Cluster', 'Value');
-        vals.map((row, index) => {
-            data2[0].push(row.product_1+"_pros", (1/vals.length)*100);
-            clusterMessages.push(row.age, row.time, row.channel, row.product_1, row.product_2, row.product_3, row.Gender, row.predict_conver)
-        })
-        console.log("data here " + clusterMessages);
+            var data2 = [[]];
+            var clusterMessages = [];
+            data2[0].push('Cluster', 'Value');
+            vals.map((row, index) => {
+                data2[0].push(row.product_1+"_pros", (1/vals.length)*100);
+                clusterMessages.push(row.age, row.time, row.channel, row.product_1, row.product_2, row.product_3, row.Gender, row.predict_conver)
+            })
+            console.log("data here " + clusterMessages);
+
+        
         return (
             <Chart
                 width={'1000px'}

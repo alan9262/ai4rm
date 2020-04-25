@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Login from '../src/components/Login.jsx';
 import Navigation from '../src/components/Navigation.jsx';
@@ -6,16 +6,8 @@ import Analytics from '../src/components/Analytics';
 import UserPage from '../src/components/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tabs, Tab } from 'react-bootstrap';
-import Tabular from '../src/components/Tabular.jsx';
-import Cookies from 'universal-cookie';
-import Example from './components/Carousel';
-import Background from '../src/images/download.jpeg'
 import Pie from '../src/components/Pie.jsx';
-import {
-  Nav,
-  Button
-} from 'reactstrap';
-const ROLES = ['customer', 'admin', 'campaign'];
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -27,48 +19,14 @@ class App extends Component {
       result: [],
       analytics: [],
       timeBasedProducts: [],
-      confMatrix: []
+      confMatrix: [],
+      labels: [],
+      view: "",
+      error: ""
     };
   }
 
-  toggleOpenFunction = () => {
-    localStorage.setItem('loggedIn', false);
-    this.state = {
-      user: {},
-      usernames: [], passwords: [],
-      loggedIn: localStorage.getItem('loggedIn'),
-      result: [],
-      analytics: [],
-      timeBasedProducts: [],
-      confMatrix: []
-    };
-  }
-
-  // UNSAFE_componentWillUnmount() {
-  //   this.setState({
-  //     user: {},
-  //     usernames: [], passwords: [],
-  //     loggedIn: false,
-  //     result: [],
-  //     analytics: [],
-  //     stackedProducts: {},
-  //     feature: []
-  //   })
-  // }
-
-  tabClick = () => {
-
-  }
-
-  // componentDidMount() {
-  //   fetch('/getStackedData')
-  //     .then(response => response.json())
-  //     .then(response => this.setState({ stackedProducts: response }))
-  // }
-
-
-  signIn(username, password) {
-    const cookies = new Cookies();
+  getData() {
     Promise.all([
       fetch("/getData"),
       fetch("/getAnalytics"),
@@ -82,79 +40,113 @@ class App extends Component {
         stackedProducts: data3[0],
         feature: data4
       }));
-    // fetch('/getData')
-    //   .then(result => result.json())
-    //   .then(result => this.setState({ result: result }))
 
-    // fetch('/getAnalytics')
-    //   .then(res => res.json())
-    //   .then(res => this.setState({ analytics: res }))
-
-    // fetch('/getStackedData')
-    //   .then(response => response.json())
-    //   .then(response => this.setState({ stackedProducts: response }))
-    let thisRole = "";
     this.state.result.map(row => {
       this.state.usernames.push(row.username);
       this.state.passwords.push(row.password);
       console.log("role hwewe", row.role);
-      if (row.username === username && password === row.password) {
-        thisRole = row.role;
-      }
     })
+  }
+
+  toggleOpenFunction = () => {
+    localStorage.setItem('loggedIn', false);
+    this.state = {
+      user: {},
+      usernames: [], passwords: [],
+      loggedIn: localStorage.getItem('loggedIn'),
+      result: [],
+      analytics: [],
+      timeBasedProducts: [],
+      confMatrix: [],
+      labels: []
+
+    };
+  }
+
+  logout = () => {
+    this.setState({
+      role: "",
+      user: {},
+      usernames: [], passwords: [],
+      labels: []
+    })
+  }
+
+  signIn(username, password) {
     // localStorage.setItem('loggedIn', true);
-    localStorage.setItem('username', username);
-    localStorage.setItem('loggedIn', password);
-    if (this.state.usernames.includes(username) && (this.state.passwords.includes(password) || cookies.get('pass') === password)) {
+    
+    if (this.state.usernames.includes(username) && (this.state.passwords.includes(password))) {
       this.setState({
-        role: thisRole,
         user: {
           username,
           password,
         }, loggedIn: true
       })
-    } else {
-      return (<h4>Please enter a valid password</h4>)
+
+      this.state.result.map((row) => {
+        if (row.username === username && row.password === password) {
+          this.setState({
+            role: row.role
+          })
+          return;
+        }
+      })
     }
+    localStorage.setItem('username', username);
+    localStorage.setItem('loggedIn', this.state.loggedIn);
+    localStorage.setItem('ROLE', this.state.role);
+  }
+
+
+  renderPage = (s) => {
+    this.setState({ view: s })
   }
 
   render() {
     const data = this.state.analytics;
     const headers = ["Cluster", "Gender", "Clicks", "Age", "Time", "Channel", "Product Category 1", "Product Category 2", "Product Category 3", "Conversion Probability"];
     console.log("ROLE -- ", this.state.role)
+    { this.getData() }
     return (
       <div>
-        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role} />
-        {this.state.role !== 'customer' ? (<div className="header-app" >
-          <div className="carousel">
-            <Example />
-          </div>
-        </div>) : ""}
-        {
-          (this.state.loggedIn) ?
-            (<div>
-              {this.state.role === 'campaign' || this.state.role === 'admin' ?
-                <div className="container" style={{ alignContent: 'center' }}>
-                  <br></br>
+        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role} renderPage={this.renderPage.bind(this)} />
 
-                  <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
-                    <Tab eventKey="insight" title="Prediction Board"><br></br>
-                      <div className="container" style={{ alignContent: 'center', marginLeft: '10rem' }}>
-                        <Pie vals={data} />
-                      </div>
-                    </Tab>
-                    {/* </div> */}
-                    <Tab eventKey="analytics" title="Data Insights">
-                      <div>
-                        <Analytics data={data} headers={headers} stackedProducts={this.state.stackedProducts}
-                          feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
-                      </div>
-                    </Tab>
-                  </Tabs>
-                </div> : <UserPage />}</div>)
-            :
-            <Login onSignIn={this.signIn.bind(this)} />
-        }
+        {!this.state.loggedIn || !localStorage.getItem('loggedIn') ? (<div>
+          <Login onSignIn={this.signIn.bind(this)} logout={this.logout.bind(this)} />
+          {this.state.error ? <div>{this.state.error}</div> : ""}
+        </div>) : ""}
+        {(this.state.loggedIn || !localStorage.getItem('loggedIn')) ?
+          <div>
+            <div>
+              {(this.state.role === 'campaign' || (this.state.role === 'admin' && (this.state.view === 'market' || this.state.view === ""))) ?
+                <div>
+                  {/* <MarketPage /> */}
+                  <div className="container" style={{ alignContent: 'center' }}>
+                    <br></br>
+                    <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
+                      <Tab eventKey="insight" title="Prediction Board"><br></br>
+                        <div className="container" style={{ alignContent: 'center', marginLeft: '10rem' }}>
+                          {data ? <Pie vals={data} rendered={true} /> : "Chart is loading..."}
+                        </div>
+                      </Tab>
+                      <Tab eventKey="analytics" title="Data Insights">
+                        <div>
+                          {data ? <Analytics rendered={true} data={data} headers={headers} stackedProducts={this.state.stackedProducts}
+                            feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
+                            : "Chart is loading..."}
+                        </div>
+                      </Tab>
+                    </Tabs>
+                  </div></div> : ""}
+            </div>
+
+            {(this.state.role === 'customer' || (this.state.role === 'admin' && (this.state.view === 'customer'))) ? (<div>
+              <UserPage labels={this.state.labels} log={this.state.loggedIn} /></div>) : ""}
+
+
+          </div>
+          :
+          ""}
       </div>
     );
   }

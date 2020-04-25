@@ -51,6 +51,7 @@ export default class Analytics extends Component {
         let headings = ["Age", "Interest Channel", "Gender", "Session duration", "Season", "Product Category", "Quantity",
             "Clicks", "Impression"];
         return (
+            
             <div>
                 <br></br>
                 <div className="label-div">

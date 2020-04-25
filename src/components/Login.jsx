@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
+import Example from './Carousel';
 
 
 class Login extends Component {
@@ -9,17 +10,24 @@ class Login extends Component {
         password: ''
     }
 
-    submit(e) {
-        e.preventDefault()
+    submit(e){
+        e.preventDefault();
         let username = this.state.username;
         let password = this.state.password;
-        this.props.onSignIn(username, password)
-        
+        this.props.onSignIn(username, password);
     }
 
     render() {
+        const { logout } = this.props;
+        // if(logout){
+        //     this.setState({username: '', password: ''})
+        // }
         return (
+
             <div>
+                <div className="header-app">
+                    <Example />
+                </div>
                 <div className="login-form">
                     <Form onSubmit={this.submit.bind(this)}>
                         <h4 className="signin-text">Sign in</h4><hr></hr>
@@ -30,7 +38,7 @@ class Login extends Component {
                             <Input onChange={e => this.setState({ password: e.target.value })} type="password" placeholder="password" />
                         </FormGroup>
                         <div style={{ textAlign: "center", padding: "1em" }}>
-                            <Button>Login</Button>
+                            <Button variant="outline-dark">Login</Button>
                         </div>
                     </Form>
                 </div>

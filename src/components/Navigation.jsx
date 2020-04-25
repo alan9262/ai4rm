@@ -19,6 +19,10 @@ export default class Navigation extends Component {
         this.props.renderPage("customer");
     }
 
+    toggle = () =>{
+        this.props.toggleOpenFunction();
+    }
+
     render() {
         const { isLoggedIn, role } = this.props;
         return (
@@ -35,13 +39,8 @@ export default class Navigation extends Component {
                                     </span>) : ""}
 
                                 </Nav>
-                                <Switch>
-                                    <Route path='/' component={Customer} />
-                                    <Route path='/customer' component={Customer} />
-                                    <Route path='/analytics' component={App} />
-                                </Switch>
                                 <Form inline>
-                                    <Button variant="outline-info" onClick={this.props.toggleOpenFunction}>Logout</Button>
+                                    <Button variant="outline-info" onClick={this.toggle.bind(this)}>Logout</Button>
                                 </Form>
                             </Router>
                         </Navbar>
