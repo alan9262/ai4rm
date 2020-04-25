@@ -47,19 +47,18 @@ class App extends Component {
     })
   }
 
-  toggleOpenFunction = () => {
+  toggleOpenFunction(){
     localStorage.setItem('loggedIn', false);
-    this.state = {
+    this.setState ({
       user: {},
       usernames: [], passwords: [],
-      loggedIn: localStorage.getItem('loggedIn'),
+      loggedIn: false,
       result: [],
       analytics: [],
       timeBasedProducts: [],
       confMatrix: [],
       labels: []
-
-    };
+    });
   }
 
   logout = () => {
@@ -108,7 +107,7 @@ class App extends Component {
     { this.getData() }
     return (
       <div>
-        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role} renderPage={this.renderPage.bind(this)} />
+        <Navigation isLoggedIn={this.state.loggedIn} role={this.state.role} renderPage={this.renderPage.bind(this)} toggleOpenFunction={this.toggleOpenFunction.bind(this)}/>
 
         {!this.state.loggedIn || !localStorage.getItem('loggedIn') ? (<div>
           <Login onSignIn={this.signIn.bind(this)} logout={this.logout.bind(this)} />

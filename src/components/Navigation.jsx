@@ -19,7 +19,7 @@ export default class Navigation extends Component {
         this.props.renderPage("customer");
     }
 
-    toggle = () =>{
+    toggle(){
         this.props.toggleOpenFunction();
     }
 
