@@ -37,7 +37,7 @@
   }
 }
 
-.login-form{
+.login-form {
   width: 100%;
   margin-top: -5rem;
   margin-left: auto;
@@ -59,8 +59,7 @@
   animation-iteration-count: infinite;
 }
 
-.Axis path,
-.Axis line {
+.Axis path, .Axis line {
   stroke: #E0E0E0;
 }
 
@@ -74,7 +73,7 @@
   text-anchor: end;
 }
 
-.header-app{
+.header-app {
   background-image: url("../src/images/2.jpg");
   background-position: center;
   background-size: cover;
@@ -83,27 +82,25 @@
   -webkit-filter: blur(4px); */
   text-align: center;
   padding: 10rem;
-
 }
 
-.carousel-text{
+.carousel-text {
   color: whitesmoke;
   z-index: 2;
   max-height: 30px;
   min-height: 30px;
 }
 
-.carousel-text{
+.carousel-text {
   color: whitesmoke;
   z-index: 2;
 }
 
-.signin-text{
+.signin-text {
   color: whitesmoke;
   z-index: 2;
   background: brown;
 }
-
 
 .card-label {
   background: seashell;
@@ -120,25 +117,32 @@
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
+
 @keyframes example {
-  0%   {border: 2px solid blanchedalmond;}
-  25%  {border:2px solid chocolate; }
-  75%  {border:2px solid blanchedalmond; }
-  100% {border:2px solid bisque; }
+  0% {
+    border: 2px solid blanchedalmond;
+  }
+  25% {
+    border: 2px solid chocolate;
+  }
+  75% {
+    border: 2px solid blanchedalmond;
+  }
+  100% {
+    border: 2px solid bisque;
+  }
 }
 
 .card-label:hover {
-  box-shadow: 2px 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 2px 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
 
 .card-label-text {
   padding: 2px 16px;
   font-weight: bold;
 }
 
-
-.label-div{
+.label-div {
   display: inline-flex;
   animation-name: label;
   animation-duration: 4s;
@@ -146,55 +150,65 @@
 }
 
 @keyframes label {
-  from {left: 00%}
-  to {left: 80%}
+  from {
+    left: 00%
+  }
+  to {
+    left: 80%
+  }
 }
 
-.toast-class{
+.toast-class {
   display: table-header-group;
   padding: 2rem;
 }
 
-.table-defined{
+.table-defined {
   text-align: center;
   max-height: 800px;
   min-height: 400px;
 }
 
-.table-defined-box{
+.table-defined-box {
   display: inline-flex;
   max-height: 400px;
   max-width: 400px;
   min-height: 400px;
   min-width: 600px
 }
-.table-defined-matrix{
+
+.table-defined-matrix {
   text-align: center;
   max-height: 800px;
   min-height: 400px;
   display: -webkit-flex;
 }
 
-.tooltip-list{
+.tooltip-list {
   text-emphasis: bold;
 }
-.text-emphasis{
+
+.text-emphasis {
   background-color: bisque;
   padding: 1rem;
   margin-bottom: 2rem;
   align-items: center;
 }
 
-.text-emphasis-left{
+.text-emphasis-left {
   background-color: darkseagreen;
   width: fit-content;
   float: left;
   padding: 1rem;
 }
 
-.text-emphasis-right{
+.text-emphasis-right {
   background-color: darkseagreen;
   width: fit-content;
   float: right;
   padding: 1rem;
+}
+
+.subtitle {
+  font-size: 30px;
 }
