@@ -56,7 +56,7 @@ export default class Analytics extends Component {
 
             <div>
                 <br></br><br></br>
-                <h1>What should you know about the customers? </h1><br></br>
+                <h1>What should you know about the customers? </h1><br></br><br></br>
                 <div className="toast-class">
                     <Toast animation={true} bsPrefix="toast-class" style={{
                         display: "table-header-group",
@@ -73,10 +73,10 @@ export default class Analytics extends Component {
                 <br></br>
                 <li className="subtitle">4 Rs of the target groups?</li><br></br>
                 <div className="label-div">
-                    <div>
-                        <h3 className="greenHeader">Total cluster (segments) of users {data.length}</h3>
-                    </div><br></br>
                     <div className="col">
+                        <div className="row">
+                            <h3 className="greenHeader">Total cluster (segments) of users {data.length}</h3>
+                        </div>
                         <div className="row flex-nowrap">
                             <div className="card-label">
                                 <h5 className="card-label-text">Right Content for users</h5>
