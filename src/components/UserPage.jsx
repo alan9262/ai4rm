@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './UserPage.scss'
+import Carousel from 'react-bootstrap/Carousel'
 
 import chanel from '../images/chanel.jpg';
 import lacome from '../images/lancome.jpg';
@@ -19,41 +20,70 @@ import cuddly from '../images/cuddly.jpg';
 import slippers from '../images/slippers.jpg';
 import dyson from '../images/dyson.jpg';
 
+import lamer from '../images/lamer.jpg';
+import iphoneAd from '../images/iphoneAd.jpg';
+import summerSale from '../images/summerSale.jpg';
+
 
 class UserPage extends Component {
     render() {
         let log = true;
-        if(this.props.log){
+        if (this.props.log) {
             log = this.props.log;
         }
         return (
             <div>
                 {log ?
-                    (<div><button>My Orders</button>
-                    <label className="label">Fashion and Cosmetics</label>
-                        <div className="scrollmenu">
-                            <div><img className="img" src={chanel} alt=""></img></div>
-                            <div><img className="img" src={lacome} alt=""></img></div>
-                            <div><img className="img" src={guerlain} alt=""></img></div>
-                            <div><img className="img" src={organic_oil} alt=""></img></div>
-                            <div><img className="img" src={beautycounter} alt=""></img></div>
-                        </div>
-                        <label className="label">Mobile and Eletronics</label>
-                        <div className="scrollmenu">
-                            <div><img className="img" src={iphone11} alt=""></img></div>
-                            <div><img className="img" src={iphone11white} alt=""></img></div>
-                            <div><img className="img" src={ipad} alt=""></img></div>
-                            <div><img className="img" src={applewatch} alt=""></img></div>
-                            <div><img className="img" src={macpro} alt=""></img></div>
-                        </div>
-                        <label className="label">Cool Stuff</label>
-                        <div className="scrollmenu">
-                            <div><img className="img" src={bed} alt=""></img></div>
-                            <div><img className="img" src={coffee} alt=""></img></div>
-                            <div><img className="img" src={cuddly} alt=""></img></div>
-                            <div><img className="img" src={slippers} alt=""></img></div>
-                            <div><img className="img" src={dyson} alt=""></img></div>
-                        </div></div>)
+                    (<div>
+                        <Carousel>
+                            <Carousel.Item>
+                                <img id="ads" className="d-block w-100" src={summerSale} alt="First slide" />
+                                <Carousel.Caption>
+                                    <h3>Buy your product here</h3>
+                                    <p></p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img id="ads" className="d-block w-100" src={lamer} alt="Third slide" />
+                                <Carousel.Caption>
+                                    <h3>Buy your product here</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img id="ads" className="d-block w-100" src={iphoneAd} alt="Third slide" />
+                                <Carousel.Caption>
+                                    <h3>Buy your product here</h3>
+                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        </Carousel>
+                        <div>
+                            <label className="label">Fashion and Cosmetics</label>
+                            <div className="scrollmenu">
+                                <div><img className="img" src={chanel} alt=""></img></div>
+                                <div><img className="img" src={lacome} alt=""></img></div>
+                                <div><img className="img" src={guerlain} alt=""></img></div>
+                                <div><img className="img" src={organic_oil} alt=""></img></div>
+                                <div><img className="img" src={beautycounter} alt=""></img></div>
+                            </div>
+                            <label className="label">Mobile and Eletronics</label>
+                            <div className="scrollmenu">
+                                <div><img className="img" src={iphone11} alt=""></img></div>
+                                <div><img className="img" src={iphone11white} alt=""></img></div>
+                                <div><img className="img" src={ipad} alt=""></img></div>
+                                <div><img className="img" src={applewatch} alt=""></img></div>
+                                <div><img className="img" src={macpro} alt=""></img></div>
+                            </div>
+                            <label className="label">Cool Products</label>
+                            <div className="scrollmenu">
+                                <div><img className="img" src={bed} alt=""></img></div>
+                                <div><img className="img" src={coffee} alt=""></img></div>
+                                <div><img className="img" src={cuddly} alt=""></img></div>
+                                <div><img className="img" src={slippers} alt=""></img></div>
+                                <div><img className="img" src={dyson} alt=""></img></div>
+                            </div></div>
+                    </div>)
                     : ""}
             </div>
         )

@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from './Main';
 import Login from './components/Login';
+import UserPage from './components/UserPage'
 
 class App extends Component {
   constructor(props) {

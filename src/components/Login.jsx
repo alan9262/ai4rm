@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
-import Example from './Carousel';
+import Example from './MainCarousel';
 
 
 class Login extends Component {
