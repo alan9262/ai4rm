@@ -163,7 +163,7 @@ class Main extends Component {
                     {this.state.role === 'admin' || this.state.role === 'marketer' ? (<span style={{ display: "inline-flex" }}>
                       <Button variant="outline-info" onClick={this.onPredictClick}>Prediction Board</Button>&nbsp;&nbsp;&nbsp;&nbsp;
                       <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onInsightClick}>Data Insights</Button>
-                    </span>) : ""}
+                    </span>) : ""}<br></br><br></br>
 
                     <div>
                       {this.state.marketer ? <div>
