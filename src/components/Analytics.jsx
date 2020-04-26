@@ -75,6 +75,9 @@ export default class Analytics extends Component {
                     <div>
                     </div><br></br>
                     <div className="col">
+                        <div className="row">
+                            <h3 className="greenHeader">Total cluster (segments) of users {data.length}</h3>
+                        </div>
                         <div className="row flex-nowrap">
                             <div className="card-label">
                                 <h5 className="card-label-text">Total cluster (segments) of users</h5>
