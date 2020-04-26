@@ -30,7 +30,7 @@ class Tabular extends Component {
                         {data !== null ? data.map(row => {
                             let clusters = "Top ";
                             count++;
-                            clusters = clusters + " " + row.product_1 + " buyers";
+                            clusters = clusters + " " + row.channel + " " + row.product_1 + " buyers";
                             // row.cluster = clusters;
                             return (<tr>
                                 <td>{clusters}</td>

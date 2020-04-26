@@ -11,7 +11,7 @@ export default class Pie extends Component {
         var clusterMessages = [];
         data2[0].push('Cluster', 'Value');
         vals.map((row, index) => {
-            data2[0].push(row.product_1 + "_pros", (1 / vals.length) * 100);
+            data2[0].push("Top" + " " + row.channel + " " + row.product_1 + " buyers", (1 / vals.length) * 100);
             clusterMessages.push(row.age, row.time, row.channel, row.product_1, row.product_2, row.product_3, row.Gender, row.predict_conver)
         })
         console.log("data here " + clusterMessages);
@@ -33,6 +33,7 @@ export default class Pie extends Component {
                 options={{
                     title: 'Our customers preferences',
                     legend: 'Clusters',
+                    animation: true,
                     tooltip: { isHtml: true, trigger: "visible" },
                     pieSliceText: 'label',
                     is3D: true,
