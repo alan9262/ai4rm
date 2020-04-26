@@ -5,8 +5,13 @@ import Navigation from './components/Navigation.jsx';
 import Analytics from './components/Analytics';
 import UserPage from './components/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Toast, Button } from 'react-bootstrap';
+import { Toast, Button, Alert } from 'react-bootstrap';
 import Pie from './components/Pie.jsx';
+import iphone11white from '../src/images/iphone11white.png';
+import applewatch from '../src/images/applewatch.jpg';
+import dyson from '../src/images/dyson.jpg';
+import chanel from '../src/images/chanel.jpg';
+import organic_oil from '../src/images/organic_oil.jpeg';
 
 class Main extends Component {
   constructor(props) {
@@ -155,9 +160,17 @@ class Main extends Component {
           <div>
             <div>
               {(this.state.role === 'campaign' || (this.state.role === 'admin' && (this.state.view === 'market' || this.state.view === ""))) ?
-                <div>
+                <div style={{display: "inline-flex"}}>
+                  <div className="scrollmenu-vertical">
+                    <label className="table-header-group" style={{padding: "1em"}}>Top selling products now..</label>
+                              <div><img className="img" src={chanel} alt=""></img></div>
+                              <div><img className="img" src={iphone11white} alt=""></img></div>
+                              <div><img className="img" src={applewatch} alt=""></img></div>
+                              <div><img className="img" src={organic_oil} alt=""></img></div>
+                              <div><img className="img" src={dyson} alt=""></img></div>
+                            </div>
                   {/* <MarketPage /> */}
-                  <div className="container" style={{ alignContent: 'center' }}>
+                  <div className="container" style={{ alignContent: 'center', maxWidth: "fit-content"} }>
                     <br></br>
 
                     {this.state.role === 'admin' || this.state.role === 'marketer' ? (<span style={{ display: "inline-flex" }}>
@@ -168,29 +181,42 @@ class Main extends Component {
                     <div>
                       {this.state.marketer ? <div>
                         {this.state.analytics ? (
-                          <div>
+                          <div style={{alignContent: 'center', maxWidth: "fit-content"}} > 
+                            <div style={{ fontSize: "medium" }}>
+                              <Alert variant="success">
+                                <Alert.Heading>Hello, {this.state.user.username}!</Alert.Heading>
+                                <p>
+                                  The below data represents our users and their buying patterns. Based on the patterns, you can find the market prediction below.
+  </p>
+                                <hr />
+                                <p className="mb-0">
+                                  The pop-ed out area in the pie chart shows the most favourable groups of customers.
+  </p>
+                              </Alert>
+                            </div>
                             <Toast animation={true} bsPrefix="toast-class" style={{
                               display: "table-header-group",
                               margin: '2rem'
-                            }}><Toast.Header closeButton={false} closeLabel={'Close'}>
+                            }}>
+                              <Toast.Header closeButton={false} closeLabel={'Close'}>
                                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                                 <strong className="mr-auto">Market Prediction</strong>
                                 <small>based on data insights</small>
                               </Toast.Header>
-                              <Toast.Body><b>Target </b>: {this.state.analytics[0].age} group for {this.state.analytics[0].product_1} at {this.state.analytics[0].time} through {this.state.analytics[0].channel}. </Toast.Body>
+                              <Toast.Body><div style={{ fontSize: "medium" }}><b>Target </b>: {this.state.analytics[0].age} group for {this.state.analytics[0].product_1} at {this.state.analytics[0].time} through {this.state.analytics[0].channel}.</div> </Toast.Body>
                             </Toast><br></br>
-                            <div className="container" style={{ alignContent: 'center', margin: 'auto', minHeight: '1000px', minWidth: '800px' }}>
-                              <Pie vals={this.state.analytics} rendered={true} width={'1000px'} height={'800px'} /></div>
+                            <div className="container label-pammer" >
+                              <Pie vals={this.state.analytics} /></div>
                           </div>)
                           : "Chart is loading..."} </div> : ""}
                     </div>
 
-                    {this.state.insights ? 
-                    <div>
-                      <Analytics rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
-                        feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
+                    {this.state.insights ?
+                      <div>
+                        <Analytics rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
+                          feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
 
-                    </div> : ""}
+                      </div> : ""}
 
 
                   </div></div> : ""}

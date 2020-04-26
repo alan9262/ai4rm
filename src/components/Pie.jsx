@@ -18,8 +18,9 @@ export default class Pie extends Component {
 
 
         return (
+            <div>
             <Chart
-                width={'1200px'}
+                width={'1400px'}
                 height={'1000px'}
                 chartType="PieChart"
                 loader={<div>Loading Chart</div>}
@@ -31,7 +32,7 @@ export default class Pie extends Component {
                 ]}
 
                 options={{
-                    title: 'Our customers preferences',
+                    title: '** The cut-out portion of the chart shows the most likely converted people.',
                     legend: 'Clusters',
                     animation: true,
                     tooltip: { isHtml: true, trigger: "visible" },
@@ -43,6 +44,7 @@ export default class Pie extends Component {
                 }}
                 rootProps={{ 'data-testid': '5' }}
             />
+            </div>
         )
     }
 }

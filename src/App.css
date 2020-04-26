@@ -36,6 +36,39 @@
     transform: rotate(360deg);
   }
 }
+.label-pammer{
+    margin-left: -7em;
+}
+
+.scrollmenu-vertical {
+    /* display: inline-grid; */
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: auto; */
+    background-color: lightgrey;
+    white-space: nowrap;
+    z-index: 1000;
+    max-height: 150vh;
+    overflow-y: scroll;
+}
+
+.scrollmenu-vertical div {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  text-decoration: none;
+  
+}
+.scrollmenu-vertical img {
+  width: 15rem;
+  height: 15rem;
+  
+}
+
+.scrollmenu-vertical div:hover {
+  background-color: teal;
+}
+
 
 .login-form {
   width: 100%;
@@ -189,6 +222,13 @@
 }
 
 .text-emphasis {
+  background-color: bisque;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.text-emphasis-bold {
   background-color: bisque;
   padding: 1rem;
   margin-bottom: 2rem;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './UserPage.scss'
-import Carousel from 'react-bootstrap/Carousel'
+import {Badge, Carousel} from 'react-bootstrap';
 
 import chanel from '../images/chanel.jpg';
 import lacome from '../images/lancome.jpg';
@@ -59,7 +59,7 @@ class UserPage extends Component {
                             </Carousel.Item>
                         </Carousel>
                         <div>
-                            <label className="label">Fashion and Cosmetics</label>
+                            <label className="label">Fashion and Cosmetics<Badge variant="secondary">New</Badge></label>
                             <div className="scrollmenu">
                                 <div><img className="img" src={chanel} alt=""></img></div>
                                 <div><img className="img" src={lacome} alt=""></img></div>
@@ -67,7 +67,7 @@ class UserPage extends Component {
                                 <div><img className="img" src={organic_oil} alt=""></img></div>
                                 <div><img className="img" src={beautycounter} alt=""></img></div>
                             </div>
-                            <label className="label">Mobile and Eletronics</label>
+                            <label className="label">Mobile and Eletronics<Badge variant="secondary">New</Badge></label>
                             <div className="scrollmenu">
                                 <div><img className="img" src={iphone11} alt=""></img></div>
                                 <div><img className="img" src={iphone11white} alt=""></img></div>
@@ -75,7 +75,7 @@ class UserPage extends Component {
                                 <div><img className="img" src={applewatch} alt=""></img></div>
                                 <div><img className="img" src={macpro} alt=""></img></div>
                             </div>
-                            <label className="label">Cool Products</label>
+                            <label className="label">Cool Products<Badge variant="secondary">New</Badge></label>
                             <div className="scrollmenu">
                                 <div><img className="img" src={bed} alt=""></img></div>
                                 <div><img className="img" src={coffee} alt=""></img></div>

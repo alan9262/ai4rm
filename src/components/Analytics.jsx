@@ -5,7 +5,7 @@ import MatrixTable from './MatrixTable';
 import HistoChart from './HistoChart';
 import StackedColumnChart from './StackedColumnChart';
 import BarChart from './BarChart';
-import { Toast } from 'react-bootstrap';
+import { Toast, Alert } from 'react-bootstrap';
 import { Container, Row, Col } from 'reactstrap';
 
 
@@ -56,7 +56,7 @@ export default class Analytics extends Component {
 
             <div>
                 <br></br><br></br>
-                <h1>What should you know about the customers? </h1><br></br>
+                <Alert key={1} variant="primary">What should you know about the customers?</Alert><br></br>
                 <div className="toast-class">
                     <Toast animation={true} bsPrefix="toast-class" style={{
                         display: "table-header-group",
@@ -71,13 +71,15 @@ export default class Analytics extends Component {
                     </Toast>
                 </div>
                 <br></br>
-                <li className="subtitle">4 Rs of the target groups?</li><br></br>
                 <div className="label-div">
                     <div>
-                        <h3 className="greenHeader">Total cluster (segments) of users {data.length}</h3>
                     </div><br></br>
                     <div className="col">
                         <div className="row flex-nowrap">
+                            <div className="card-label">
+                                <h5 className="card-label-text">Total cluster (segments) of users</h5>
+                                <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data.length}</h1>
+                            </div>
                             <div className="card-label">
                                 <h5 className="card-label-text">Right Content for users</h5>
                                 <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].product_1}</h1>
@@ -89,51 +91,28 @@ export default class Analytics extends Component {
                                 <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].time}</h1>
                             </div>
                         </div>
-                        <div className="row flex-nowrap">
-                            <div className="card-label">
-                                <h5 className="card-label-text">Right Content for users</h5>
-                                <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].product_1}</h1>
-                            </div>
-                            <div className="card-label">
-                                <h5 className="card-label-text">Right Channel for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].channel}</h1>
-                            </div>
-                            <div className="card-label">
-                                <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].time}</h1>
-                            </div>
-                        </div>
-                        <div className="row flex-nowrap">
-                            <div className="card-label">
-                                <h5 className="card-label-text">Right Content for users</h5>
-                                <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].product_1}</h1>
-                            </div>
-                            <div className="card-label">
-                                <h5 className="card-label-text">Right Channel for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].channel}</h1>
-                            </div>
-                            <div className="card-label">
-                                <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].time}</h1>
-                            </div>
-                        </div>
+
                     </div>
                 </div><hr></hr>
 
-                <Container>
-                    <Row>
-                        <Col xs={6} md={6}>
-                            <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} />
-                        </Col>
-                        <Col xs={6} md={6}>
-                            <HistoChart vals={timeBasedProducts} X={"age"} Y={"total_conversion"} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6} md={6}>
-                            <li className="subtitle">What should you focuses on marketing promotion?</li>
-                            <BarChart data={feature ? feature : null} />
 
-                        </Col>
-                    </Row>
+                <Row>
+                    <Col xs={6} md={6}>
+                        <StackedColumnChart stackedProducts={stackedProducts ? stackedProducts : null} />
+                    </Col>
+                    <Col xs={6} md={6}>
+                        <HistoChart vals={timeBasedProducts} X={"age"} Y={"total_conversion"} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={6} md={6}>
+                        <Alert key={2} variant="primary">What should you focuses on marketing promotion?</Alert><br></br>
+                        <BarChart data={feature ? feature : null} />
 
-                </Container><br></br>
+                    </Col>
+                </Row>
+
+                <br></br>
                 {/* <div className="table-defined-box">
                     
 
@@ -144,8 +123,9 @@ export default class Analytics extends Component {
 
                     
                 </div><br></br><hr></hr> */}
-
-                <h1>Advance Analysis Result</h1>
+                <div className="text-emphasis">
+                    Advance Analysis Result
+                </div>
                 <div className="container table-defined" >
                     <h4 className="text-emphasis">k-means clustering (Segments of users based on dataset!)</h4>
                     <Tabular headers={headers} data={data ? data : null} />
