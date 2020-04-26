@@ -3,28 +3,19 @@ import { Chart } from "react-google-charts";
 
 export default class HistoChart extends Component {
   render() {
-
     const { vals } = this.props;
-    console.log("histochart" , vals);
     let data2 = [[]];
     Object.entries(vals).forEach(([key, value]) => {
-      //use key and value here
       data2.push(key, value);
-  })
-  console.log("data2 ", data2)
-  var keys = [];
-  var values = [];
-//   Object.entries(data2[2]).forEach(([key, value]) => {
-//     //use key and value here
-//     keys.push(key);
-//     values.push(value);
-// })
-values[0] = data2[2] ? data2[2]["00:00 - 06:00"] : 0;
-values[1] = data2[2]? data2[2]["00:06 - 12:00"] : 0;
-values[2] = data2[2] ? data2[2]["12:00 - 18:00"] : 0;
-values[3] = data2[2] ? data2[2]["18:00 - 23:59"] : 0;
-console.log("keys ", keys);
-console.log("values ", values);
+    })
+    var keys = [];
+    var values = [];
+    values[0] = data2[2] ? data2[2]["00:00 - 06:00"] : 0;
+    values[1] = data2[2] ? data2[2]["00:06 - 12:00"] : 0;
+    values[2] = data2[2] ? data2[2]["12:00 - 18:00"] : 0;
+    values[3] = data2[2] ? data2[2]["18:00 - 23:59"] : 0;
+    console.log("keys ", keys);
+    console.log("values ", values);
 
     return (
       <Chart

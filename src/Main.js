@@ -5,7 +5,7 @@ import Navigation from './components/Navigation.jsx';
 import Analytics from './components/Analytics';
 import UserPage from './components/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Tabs, Tab, Toast } from 'react-bootstrap';
+import { Toast, Button } from 'react-bootstrap';
 import Pie from './components/Pie.jsx';
 
 class Main extends Component {
@@ -22,7 +22,9 @@ class Main extends Component {
       confMatrix: [],
       view: "",
       error: "",
-      stackedProducts: {}
+      stackedProducts: {},
+      marketer: true,
+      insights: false
 
     };
   }
@@ -117,6 +119,19 @@ class Main extends Component {
 
   }
 
+  onPredictClick = () => {
+    this.setState({
+      marketer: true,
+      insights: false
+    })
+  }
+
+  onInsightClick = () => {
+    this.setState({
+      marketer: false,
+      insights: true
+    })
+  }
 
   renderPage = (s) => {
     this.setState({ view: s })
@@ -144,35 +159,40 @@ class Main extends Component {
                   {/* <MarketPage /> */}
                   <div className="container" style={{ alignContent: 'center' }}>
                     <br></br>
-                    <Tabs defaultActiveKey="insight" id="uncontrolled-tab-example" onClick={this.tabClick}>
-                      <Tab eventKey="insight" title="Prediction Board"><br></br>
-                        <div>
-                          {this.state.analytics ? (
-                            <div>
-                              <Toast animation={true} bsPrefix="toast-class" style={{
-                                display: "table-header-group",
-                                margin: '2rem'
-                              }}><Toast.Header closeButton={false} closeLabel={'Close'}>
-                                  <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                                  <strong className="mr-auto">Market Prediction</strong>
-                                  <small>based on data insights</small>
-                                </Toast.Header>
-                                <Toast.Body><b>Target </b>: {this.state.analytics[0].age} group for {this.state.analytics[0].product_1} at {this.state.analytics[0].time} through {this.state.analytics[0].channel}. </Toast.Body>
-                              </Toast><br></br>
-                              <div className="container" style={{ alignContent: 'center', margin: 'auto', minHeight: '1000px', minWidth: '800px' }}>
-                                <Pie vals={this.state.analytics} rendered={true} width={'1000px'} height={'800px'} /></div>
-                            </div>)
-                            : "Chart is loading..."}
-                        </div>
-                      </Tab>
-                      <Tab eventKey="analytics" title="Data Insights">
-                        <div>
-                          <Analytics rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
-                            feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
 
-                        </div>
-                      </Tab>
-                    </Tabs>
+                    {this.state.role === 'admin' || this.state.role === 'marketer' ? (<span style={{ display: "inline-flex" }}>
+                      <Button variant="outline-info" onClick={this.onPredictClick}>Prediction Board</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onInsightClick}>Data Insights</Button>
+                    </span>) : ""}<br></br><br></br>
+
+                    <div>
+                      {this.state.marketer ? <div>
+                        {this.state.analytics ? (
+                          <div>
+                            <Toast animation={true} bsPrefix="toast-class" style={{
+                              display: "table-header-group",
+                              margin: '2rem'
+                            }}><Toast.Header closeButton={false} closeLabel={'Close'}>
+                                <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+                                <strong className="mr-auto">Market Prediction</strong>
+                                <small>based on data insights</small>
+                              </Toast.Header>
+                              <Toast.Body><b>Target </b>: {this.state.analytics[0].age} group for {this.state.analytics[0].product_1} at {this.state.analytics[0].time} through {this.state.analytics[0].channel}. </Toast.Body>
+                            </Toast><br></br>
+                            <div className="container" style={{ alignContent: 'center', margin: 'auto', minHeight: '1000px', minWidth: '800px' }}>
+                              <Pie vals={this.state.analytics} rendered={true} width={'1000px'} height={'800px'} /></div>
+                          </div>)
+                          : "Chart is loading..."} </div> : ""}
+                    </div>
+
+                    {this.state.insights ? 
+                    <div>
+                      <Analytics rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
+                        feature={this.state.feature} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
+
+                    </div> : ""}
+
+
                   </div></div> : ""}
             </div>
 

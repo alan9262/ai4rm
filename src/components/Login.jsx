@@ -18,12 +18,7 @@ class Login extends Component {
     }
 
     render() {
-        const { logout } = this.props;
-        // if(logout){
-        //     this.setState({username: '', password: ''})
-        // }
         return (
-
             <div>
                 <div className="header-app">
                     <Example />

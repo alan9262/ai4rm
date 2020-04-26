@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Alert, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import { Table } from 'reactstrap';
 
 class Tabular extends Component {
     state = {
@@ -30,7 +30,7 @@ class Tabular extends Component {
                         {data !== null ? data.map(row => {
                             let clusters = "Top ";
                             count++;
-                            clusters = clusters + " " + row.product_1 + " buyers";
+                            clusters = clusters + " " + row.channel + " " + row.product_1 + " buyers";
                             // row.cluster = clusters;
                             return (<tr>
                                 <td>{clusters}</td>
