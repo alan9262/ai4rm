@@ -19,8 +19,8 @@ export default class Pie extends Component {
 
         return (
             <Chart
-                width={'1000px'}
-                height={'800px'}
+                width={'1200px'}
+                height={'1000px'}
                 chartType="PieChart"
                 loader={<div>Loading Chart</div>}
                 data={[
