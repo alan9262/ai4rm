@@ -77,7 +77,7 @@ const Example = (props) => {
             alt="Third slide"
           /> */}
           <h2 className="carousel-text">Explore more on how we do it!</h2><br></br>
-            <p className="carousel-text">Scroll down for more information</p><br></br><br></br>
+            <p className="carousel-text">Please sign in below</p><br></br><br></br>
       
           {/* <Carousel.Caption>
             
