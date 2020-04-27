@@ -235,7 +235,7 @@ class Main extends Component {
           <div>
             <div>
               {(this.state.role === 'campaign' || (this.state.role === 'admin' && (this.state.view === 'market' || this.state.view === ""))) ?
-                <div style={{ display: "inline-flex" }}>
+                <div style={{ display: "-webkit-inline-box" }}>
                   <div className="scrollmenu-vertical">
                     <label className="table-header-group topSellingLabel" style={{ padding: "1em" }}>Top selling products now..</label>
                     <div><img className="img" src={iphone11white} alt=""></img></div>
