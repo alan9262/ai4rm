@@ -5,16 +5,16 @@ export default class StackedColumnChart extends Component {
 
 
     render() {
-        const { stackedProducts } = this.props;
+        const { stackedProducts, clusters } = this.props;
         var values = [" lovers", " buyers", " pros"]
         var names = [];
         var ob1 = [];
         var ob = [];
         let i =0;
-        console.log("here in stackedProducts", stackedProducts);
+        console.log("here in stackedProducts", clusters);
         for (var key of Object.keys(stackedProducts)) {
             if (key !== "_id") {
-                ob1.push(key + values[i]);
+                ob1.push("Top" + " " + key.channel + " " + key.product_1 + " buyers");
                 i++;
             }
         }
@@ -76,10 +76,10 @@ export default class StackedColumnChart extends Component {
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ["Product", ob[0], ob[1], ob[2]],
-                    [ob[0], stackedProducts["Cluster 1"]["Cool Stuff"], stackedProducts["Cluster 2"]["Cool Stuff"], stackedProducts["Cluster 3"]["Cool Stuff"]],
-                    [ob[1], stackedProducts["Cluster 1"]["Fashion"], stackedProducts["Cluster 2"]["Fashion"], stackedProducts["Cluster 3"]["Fashion"]],
-                    [ob[2], stackedProducts["Cluster 1"]["Mobile"], stackedProducts["Cluster 2"]["Mobile"], stackedProducts["Cluster 3"]["Mobile"]],
+                    ["Product", clusters[0], clusters[1], clusters[2]],
+                    [clusters[0], stackedProducts["Cluster 1"]["Cool Stuff"], stackedProducts["Cluster 2"]["Cool Stuff"], stackedProducts["Cluster 3"]["Cool Stuff"]],
+                    [clusters[1], stackedProducts["Cluster 1"]["Fashion"], stackedProducts["Cluster 2"]["Fashion"], stackedProducts["Cluster 3"]["Fashion"]],
+                    [clusters[2], stackedProducts["Cluster 1"]["Mobile"], stackedProducts["Cluster 2"]["Mobile"], stackedProducts["Cluster 3"]["Mobile"]],
                 ]}
 
                 options={{
@@ -93,7 +93,7 @@ export default class StackedColumnChart extends Component {
                     vAxis: {
                         title: 'Product Categories',
                     },
-                    bars: 'horizontal',
+                    bars: 'vertical',
                     axes: {
                         y: {
                             0: { side: 'right' },
@@ -104,7 +104,7 @@ export default class StackedColumnChart extends Component {
                         easing: 'linear',
                         duration: 1000,
                     },
-                    enableInteractivity: false,
+                    enableInteractivity: true,
                 }}
                 chartEvents={[
                     {

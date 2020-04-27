@@ -13,7 +13,6 @@ class Tabular extends Component {
     }
     render() {
         let count = 0;
-        let tableID = 0;
         const { data, headers } = this.props;
         
         return (

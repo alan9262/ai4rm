@@ -26,15 +26,15 @@ export default class BarChart extends PureComponent {
                 options={{
                     // Material design options
                     chart: {
-                        title: 'Random Forest Attribute Significance',
-                        subtitle: 'How each attribute contributes to a prediction',
+                        title: 'Attribute Significance for prediction',
+                        subtitle: 'How each attribute based on user data contributes to a prediction',
                     },
                     animation: {
                         startup: true,
                         easing: 'linear',
-                        duration: 1500,
+                        duration: 3000,
                       },
-                      enableInteractivity: false,
+                      enableInteractivity: true,
                     }}
                     chartEvents={[
                       {

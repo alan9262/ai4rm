@@ -39,7 +39,7 @@ export default class Pie extends Component {
                     pieSliceText: 'label',
                     is3D: true,
                     slices: {
-                        0: { offset: 0.2 }
+                        2: { offset: 0.2 }
                     }
                 }}
                 rootProps={{ 'data-testid': '5' }}

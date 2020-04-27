@@ -31,51 +31,47 @@ class UserPage extends Component {
         if (this.props.log) {
             log = this.props.log;
         }
+        const { arrange } = this.props;
         return (
             <div>
                 {log ?
                     (<div>
                         <Carousel>
                             <Carousel.Item>
-                                <img id="ads" className="d-block w-100" src={summerSale} alt="First slide" />
+                                <img id="ads" className="d-block w-100" src={iphoneAd} alt="First slide" />
                                 <Carousel.Caption>
-                                    <h3>Buy your product here</h3>
-                                    <p></p>
+                                    <h3>Scroll down to see more products</h3>
+                                    
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img id="ads" className="d-block w-100" src={summerSale} alt="Third slide" />
+                                <Carousel.Caption>
+                                    <h3>Scroll down to see more products</h3>
+                                    
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img id="ads" className="d-block w-100" src={lamer} alt="Third slide" />
                                 <Carousel.Caption>
-                                    <h3>Buy your product here</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img id="ads" className="d-block w-100" src={iphoneAd} alt="Third slide" />
-                                <Carousel.Caption>
-                                    <h3>Buy your product here</h3>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    <h3>Scroll down to see more products</h3>
+                                    
                                 </Carousel.Caption>
                             </Carousel.Item>
                         </Carousel>
                         <div>
-                            <label className="label">Fashion and Cosmetics<Badge variant="secondary">New</Badge></label>
-                            <div className="scrollmenu">
-                                <div><img className="img" src={chanel} alt=""></img></div>
-                                <div><img className="img" src={lacome} alt=""></img></div>
-                                <div><img className="img" src={guerlain} alt=""></img></div>
-                                <div><img className="img" src={organic_oil} alt=""></img></div>
-                                <div><img className="img" src={beautycounter} alt=""></img></div>
-                            </div>
-                            <label className="label">Mobile and Eletronics<Badge variant="secondary">New</Badge></label>
+                            {arrange[0] === 2 ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
+                            <div id="mobile">
                             <div className="scrollmenu">
                                 <div><img className="img" src={iphone11} alt=""></img></div>
-                                <div><img className="img" src={iphone11white} alt=""></img></div>
                                 <div><img className="img" src={ipad} alt=""></img></div>
                                 <div><img className="img" src={applewatch} alt=""></img></div>
                                 <div><img className="img" src={macpro} alt=""></img></div>
+                                <div><img className="img" src={iphone11white} alt=""></img></div>
                             </div>
-                            <label className="label">Cool Products<Badge variant="secondary">New</Badge></label>
+                            </div>
+                            <label className="label">Cool Products&nbsp;<Badge variant="secondary">New</Badge></label>
+                            <div id="cool">
                             <div className="scrollmenu">
                                 <div><img className="img" src={bed} alt=""></img></div>
                                 <div><img className="img" src={coffee} alt=""></img></div>
@@ -83,6 +79,48 @@ class UserPage extends Component {
                                 <div><img className="img" src={slippers} alt=""></img></div>
                                 <div><img className="img" src={dyson} alt=""></img></div>
                             </div></div>
+                            <label className="label">Fashion and Cosmetics&nbsp;<Badge variant="secondary">New</Badge></label>
+                            <div id="fashion">
+                            <div className="scrollmenu">
+                                <div><img className="img" src={chanel} alt=""></img></div>
+                                <div><img className="img" src={lacome} alt=""></img></div>
+                                <div><img className="img" src={guerlain} alt=""></img></div>
+                                <div><img className="img" src={organic_oil} alt=""></img></div>
+                                <div><img className="img" src={beautycounter} alt=""></img></div>
+                            </div>
+                            </div>
+                            )</div> : <div>(<label className="label">Fashion and Cosmetics<Badge variant="secondary">New</Badge></label>
+                            <div id="fashion">
+                            <div className="scrollmenu">
+                                <div><img className="img" src={chanel} alt=""></img></div>
+                                <div><img className="img" src={lacome} alt=""></img></div>
+                                <div><img className="img" src={guerlain} alt=""></img></div>
+                                <div><img className="img" src={organic_oil} alt=""></img></div>
+                                <div><img className="img" src={beautycounter} alt=""></img></div>
+                            </div>
+                            </div>
+                            <label className="label">Cool Products<Badge variant="secondary">New</Badge></label>
+                            <div id="cool">
+                            <div className="scrollmenu">
+                                <div><img className="img" src={bed} alt=""></img></div>
+                                <div><img className="img" src={coffee} alt=""></img></div>
+                                <div><img className="img" src={cuddly} alt=""></img></div>
+                                <div><img className="img" src={slippers} alt=""></img></div>
+                                <div><img className="img" src={dyson} alt=""></img></div>
+                            </div></div>
+                            <label className="label">Mobile and Eletronics<Badge variant="secondary">New</Badge></label>
+                            <div id="mobile">
+                            <div className="scrollmenu">
+                                <div><img className="img" src={iphone11} alt=""></img></div>
+                                <div><img className="img" src={iphone11white} alt=""></img></div>
+                                <div><img className="img" src={ipad} alt=""></img></div>
+                                <div><img className="img" src={applewatch} alt=""></img></div>
+                                <div><img className="img" src={macpro} alt=""></img></div>
+                            </div>
+                            </div>
+                            )</div>}
+                            
+                            </div>
                     </div>)
                     : ""}
             </div>

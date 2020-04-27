@@ -32,7 +32,7 @@ export default class HistoChart extends Component {
         ]}
         options={{
           title: 'When are we selling most products?',
-          legend: { position: 'fixed' },
+          legend: { position: 'absolute' },
         }}
         rootProps={{ 'data-testid': '2' }}
       />

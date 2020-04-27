@@ -16,6 +16,9 @@ export default class Navigation extends Component {
     onCustomerCLick = () => {
         this.props.renderPage("customer");
     }
+    onDataSClick = () => {
+        this.props.renderPage("datas");
+    }
 
     toggle(){
         this.props.toggleOpenFunction();
@@ -33,7 +36,8 @@ export default class Navigation extends Component {
                     <Nav className="mr-auto">
                                     {role === 'admin' ? (<span style={{ display: "inline-flex" }}>
                                         <Button variant="outline-info" onClick={this.onMarketClick}>Marketer</Button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onCustomerCLick}>Customer</Button>
+                                        <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onCustomerCLick}>Customer</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onDataSClick}>Data Scientist</Button>
                                     </span>) : ""}
 
                                 </Nav>
