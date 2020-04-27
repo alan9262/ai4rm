@@ -245,6 +245,25 @@ class Main extends Component {
     
   }
 
+  getMath(object, name){
+      if(name === 'sensitivity'){
+        return (object["True Positive"]/(object["True Positive"] + object["False Negative"])).toFixed(2);
+      }
+      if(name === 'specificity'){
+        return (object["True Negative"]/(object["True Negative"] + object["False Postitive"])).toFixed(2);
+      }
+      if(name === 'precision'){
+        return (object["True Positive"]/(object["True Positive"] + object["False Postitive"])).toFixed(2);
+      }
+      if(name === 'fallout'){
+        return (object["False Postitive"]/(object["True Negative"] + object["False Postitive"])).toFixed(2);
+      }
+      if(name === 'threatscore'){
+        return (object["True Positive"]/(object["True Positive"] + object["False Negative"] + object["False Postitive"])).toFixed(2);
+      }
+
+  }
+
   render() {
     const data = this.state.analytics;
     console.log("error ", this.state.error);
@@ -358,7 +377,15 @@ class Main extends Component {
             
               {this.state.view === 'datas' ? (<div className="container table-defined ">
                 <h4 className="text-emphasis">Random Forest Analysis </h4>
-                {this.state.confMatrix[0] ? <h4 style={{ textAlign: "left" }}><b>Accuracy: </b>{(this.state.confMatrix[0].Accuracy) * 100}%</h4> : ""}<hr></hr>
+                <hr></hr>
+                <div style= {{display: "inline-flex"}}>
+                {this.state.confMatrix[0] ? <p style={{ textAlign: "left", padding: "1rem" }}><b>Accuracy: </b>{(this.state.confMatrix[0].Accuracy) * 100}%</p> : ""}
+                {this.state.confMatrix[0] ? <p style={{ textAlign: "left", padding: "1rem" }}><b>Sensitivity: </b>{(this.getMath(this.state.confMatrix[0], 'sensitivity'))}</p> : ""}
+                {this.state.confMatrix[0] ? <p style={{ textAlign: "center", padding: "1rem" }}><b>Specificity: </b>{(this.getMath(this.state.confMatrix[0], 'specificity'))}</p> : ""}
+                {this.state.confMatrix[0] ? <p style={{ textAlign: "center", padding: "1rem" }}><b>Precision: </b>{(this.getMath(this.state.confMatrix[0], 'precision'))}</p> : ""}
+                {this.state.confMatrix[0] ? <p style={{ textAlign: "right", padding: "1rem" }}><b>Fall out: </b>{(this.getMath(this.state.confMatrix[0], 'fallout'))}</p> : ""}
+                {this.state.confMatrix[0] ? <p style={{ textAlign: "right", padding: "1rem" }}><b>Threat score: </b>{(this.getMath(this.state.confMatrix[0], 'threatscore'))}</p> : ""}<hr></hr>
+                </div>
                 <div>
                   <div style={{ float: 'left' }}><h6 className="text-emphasis-right" >Contribution of attributes</h6><RFTable headers={headings} data={feature ? feature[0] : null} /></div>
                   <div style={{ float: 'right' }}><h6 className="text-emphasis-right">Confusion Matrix</h6><MatrixTable flag={1} data={this.state.confMatrix ? this.state.confMatrix : null} /></div>
