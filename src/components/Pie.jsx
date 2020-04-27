@@ -14,11 +14,9 @@ export default class Pie extends Component {
             data2[0].push("Top" + " " + row.channel + " " + row.product_1 + " buyers", (1 / vals.length) * 100);
             clusterMessages.push(row.age, row.time, row.channel, row.product_1, row.product_2, row.product_3, row.Gender, row.predict_conver)
         })
-        console.log("data here " + clusterMessages);
-
-
         return (
             <div>
+                <div style={{marginLeft: '6rem'}}>
             <Chart
                 width={'1400px'}
                 height={'1000px'}
@@ -44,6 +42,7 @@ export default class Pie extends Component {
                 }}
                 rootProps={{ 'data-testid': '5' }}
             />
+            </div>
             </div>
         )
     }

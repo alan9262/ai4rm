@@ -38,6 +38,26 @@ class Main extends Component {
     };
   }
 
+  componentWillUnmount(){
+    this.setState({
+      user: {},
+      role: "",
+      usernames: [], passwords: [],
+      loggedIn: false,
+      result: [],
+      analytics: [],
+      timeBasedProducts: [],
+      confMatrix: [],
+      view: "",
+      error: "",
+      stackedProducts: {},
+      marketer: true,
+      insights: false,
+      productArray: [],
+      error: ""
+    });
+  }
+
   componentDidMount(){
     Promise.all([
       fetch("/getTimeBasedProducts", {
@@ -58,8 +78,11 @@ class Main extends Component {
       .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
       .then(([data1, data2]) => this.setState({
         timeBasedProducts: data1,
-        confMatrix: data2
+        confMatrix: data2,
+        marketer: true
       }));
+      
+      
   }
 
   shuffle(array) {
@@ -141,7 +164,7 @@ class Main extends Component {
             role: row.role,
             loggedIn: true
           })
-          // return;
+          return;
         }
       })
     }else{
@@ -211,7 +234,15 @@ class Main extends Component {
   }
 
   renderPage = (s) => {
-    this.setState({ view: s })
+    if(s === 'customer'){
+      this.setState({ view: s, insights: false })
+    }else if(s === 'market'){
+      this.setState({ view: s, insights: true })
+    }else{
+      this.setState({ view: s })
+    }
+    
+    
   }
 
   render() {
@@ -223,6 +254,9 @@ class Main extends Component {
     const headers = ["Cluster", "Gender", "Clicks", "Age", "Time", "Channel", "Product Category 1", "Product Category 2", "Product Category 3", "Conversion Probability"];
     let headings = ["Age", "Interest Channel", "Gender", "Session duration", "Season", "Product Category", "Quantity",
       "Clicks", "Impression"];
+    let dataRow = this.state.analytics[0] ? this.state.analytics.reduce(function (prev, current) {
+        return (prev.y > current.y) ? prev : current
+    }) : ""
     return (
       <div>
         <Navigation user={this.state.user.username} isLoggedIn={this.state.loggedIn} role={this.state.role} renderPage={this.renderPage.bind(this)} toggleOpenFunction={this.toggleOpenFunction.bind(this)} />
@@ -264,7 +298,7 @@ class Main extends Component {
                                   The below data represents our users and their buying patterns. Based on the patterns, you can find the market prediction below.
   </p>
                                 <hr />
-                                <p className="mb-0">
+                                <p className="mb-0 asterisk">
                                   The pop-ed out area in the pie chart shows the most favourable groups of customers.
   </p>
                               </Alert>
@@ -282,7 +316,7 @@ class Main extends Component {
                                   <strong className="mr-auto">Market Prediction</strong>
                                   <small>based on data insights</small>
                                 </Toast.Header>
-                                <Toast.Body><div style={{ fontSize: "medium" }}><b>Target </b>: {this.state.analytics[0].age} group for {this.state.analytics[0].product_1} at {this.state.analytics[0].time} through {this.state.analytics[0].channel}.</div> </Toast.Body>
+                                {dataRow ? (<Toast.Body><div style={{ fontSize: "medium" }}><b>Target </b>: {dataRow.age} age group customers for product category {dataRow.product_1} at ({dataRow.time}) through channel {dataRow.channel}.</div> </Toast.Body>) : ""}
                               </Toast></div><br></br><br></br><br></br>
                             <div className="container label-pammer" style={{ marginTop: '-2rem' }}>
                               <Pie vals={this.state.analytics} /></div>

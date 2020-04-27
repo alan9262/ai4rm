@@ -57,7 +57,6 @@ export default class Analytics extends Component {
     render() {
         const { data, headers, stackedProducts, feature, view, role } = this.props;
         const { confMatrix, timeBasedProducts } = this.state;
-        console.log("role", role);
         let dataRow = data.reduce(function (prev, current) {
             return (prev.y > current.y) ? prev : current
         })

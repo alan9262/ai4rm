@@ -118,6 +118,11 @@
   text-anchor: end;
 }
 
+.asterisk{
+  font-size: smaller;
+    font-style: oblique;
+}
+
 .header-app {
   background-image: url("../src/images/2.jpg");
   background-position: center;
