@@ -31,7 +31,8 @@ class UserPage extends Component {
         if (this.props.log) {
             log = this.props.log;
         }
-        const { arrange } = this.props;
+        const { arrange, age } = this.props;
+        console.log("arrange, age arrange, age ---" , arrange, age);
         return (
             <div>
                 {log ?
@@ -60,7 +61,7 @@ class UserPage extends Component {
                             </Carousel.Item>
                         </Carousel>
                         <div>
-                            {arrange[0] === 2 ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
+                            {(arrange[0] === 2 || age <=30) ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
                             <div id="mobile">
                             <div className="scrollmenu">
                                 <div><img className="img" src={iphone11} alt=""></img></div>
