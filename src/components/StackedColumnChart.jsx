@@ -77,9 +77,9 @@ export default class StackedColumnChart extends Component {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ["Product", clusters[0], clusters[1], clusters[2]],
-                    [clusters[0], stackedProducts["Cluster 1"]["Cool Stuff"], stackedProducts["Cluster 2"]["Cool Stuff"], stackedProducts["Cluster 3"]["Cool Stuff"]],
-                    [clusters[1], stackedProducts["Cluster 1"]["Fashion"], stackedProducts["Cluster 2"]["Fashion"], stackedProducts["Cluster 3"]["Fashion"]],
-                    [clusters[2], stackedProducts["Cluster 1"]["Mobile"], stackedProducts["Cluster 2"]["Mobile"], stackedProducts["Cluster 3"]["Mobile"]],
+                    ["Cool stuff", stackedProducts["Cluster 1"]["Cool Stuff"], stackedProducts["Cluster 2"]["Cool Stuff"], stackedProducts["Cluster 3"]["Cool Stuff"]],
+                    ["Fashion", stackedProducts["Cluster 1"]["Fashion"], stackedProducts["Cluster 2"]["Fashion"], stackedProducts["Cluster 3"]["Fashion"]],
+                    ["Mobile", stackedProducts["Cluster 1"]["Mobile"], stackedProducts["Cluster 2"]["Mobile"], stackedProducts["Cluster 3"]["Mobile"]],
                 ]}
 
                 options={{
