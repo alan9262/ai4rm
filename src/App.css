@@ -36,18 +36,19 @@
     transform: rotate(360deg);
   }
 }
-.label-pammer{
-    margin-left: -7em;
+
+.label-pammer {
+  margin-left: -7em;
 }
 
 .scrollmenu-vertical {
-    display: inline-grid; 
-    /* margin-top: auto; */
-    background-color: lightgrey;
-    white-space: nowrap;
-    z-index: 1000;
-    max-height: 150vh;
-    overflow-y: scroll;
+  display: inline-grid;
+  /* margin-top: auto; */
+  background-color: lightgrey;
+  white-space: nowrap;
+  z-index: 1000;
+  max-height: 150vh;
+  overflow-y: scroll;
 }
 
 .scrollmenu-vertical div {
@@ -55,8 +56,8 @@
   text-align: center;
   padding: 1rem;
   text-decoration: none;
-  
 }
+
 .scrollmenu-vertical img {
   width: 15rem;
   height: 15rem;
@@ -66,7 +67,7 @@
   background-color: teal;
 }
 
-.topSellingLabel{
+.topSellingLabel {
   text-transform: uppercase;
   text-emphasis: bold;
   text-align: center;
@@ -76,10 +77,10 @@
   background-color: whitesmoke;
 }
 
-.error-label{
+.error-label {
   text-align: center;
-    margin-top: -8rem;
-    color: red;
+  margin-top: -8rem;
+  color: red;
 }
 
 .login-form {
@@ -118,9 +119,9 @@
   text-anchor: end;
 }
 
-.asterisk{
+.asterisk {
   font-size: smaller;
-    font-style: oblique;
+  font-style: oblique;
 }
 
 .header-app {
@@ -268,4 +269,21 @@
 
 .subtitle {
   font-size: 30px;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: pink;
+  color: white;
 }
