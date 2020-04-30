@@ -36,12 +36,12 @@ class Main extends Component {
       productArray: [2, 3, 1],
       error: "",
       age: 0,
-      wasOpened1: false,
+      wasOpened1: true,
       wasOpened2: false,
-      wasOpened3: true,
-      variantColor1: "dark",
+      wasOpened3: false,
+      variantColor1: "success",
       variantColor2: "dark",
-      variantColor3: "success",
+      variantColor3: "dark",
       variantColor4: "secondary",
       variantColor5: "outline-info",
       channelProduct: []
@@ -322,7 +322,7 @@ class Main extends Component {
     let headings = ["Age", "Interest Channel", "Gender", "Session duration", "Season", "Product Category", "Quantity",
       "Clicks", "Impression"];
     let dataRow = this.state.analytics[0] ? this.state.analytics.reduce(function (prev, current) {
-      return (prev.y > current.y) ? prev : current
+      return (prev.predict_conver > current.predict_conver) ? prev : current
     }) : ""
     return (
       <div>

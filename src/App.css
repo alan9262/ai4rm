@@ -39,7 +39,7 @@
 
 .label-pammer {
   margin-left: -7em;
-  margin-top: 3rem;
+  
 }
 
 .scrollmenu-vertical {
@@ -57,6 +57,7 @@
   text-align: center;
   padding: 1rem;
   text-decoration: none;
+  animation-name: exam
 }
 
 .scrollmenu-vertical img {

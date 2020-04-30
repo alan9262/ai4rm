@@ -14,6 +14,7 @@ export default class Pie extends Component {
             data2[0].push("Top" + " " + row.channel + " " + row.product_1 + " buyers", (1 / vals.length) * 100);
             clusterMessages.push(row.age, row.time, row.channel, row.product_1, row.product_2, row.product_3, row.Gender, row.predict_conver)
         })
+
         return (
             <div>
                 <div style={{marginLeft: '5rem', marginTop: '3rem'}}>
@@ -37,7 +38,7 @@ export default class Pie extends Component {
                     pieSliceText: 'label',
                     is3D: true,
                     slices: {
-                        2: { offset: 0.2 }
+                        0: { offset: 0.1 }
                     }
                 }}
                 rootProps={{ 'data-testid': '5' }}
