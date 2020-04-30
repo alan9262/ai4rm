@@ -35,7 +35,16 @@ class Main extends Component {
       insights: false,
       productArray: [2, 3, 1],
       error: "",
-      age: 20
+      age: 0,
+      wasOpened1: false,
+      wasOpened2: false,
+      wasOpened3: true,
+      variantColor1: "dark",
+      variantColor2: "dark",
+      variantColor3: "success",
+      variantColor4: "secondary",
+      variantColor5: "outline-info",
+      channelProduct: []
     };
   }
 
@@ -82,7 +91,14 @@ class Main extends Component {
         marketer: true
       }));
 
-
+      Promise.all([
+        fetch("/getChannel")
+      ])
+        .then(([res1]) => Promise.all([res1.json()]))
+        .then(([data1]) => this.setState({
+          channelProduct: data1
+        }));
+        localStorage.setItem('channelProduct', this.state.channelProduct)
   }
 
   shuffle(array) {
@@ -137,8 +153,8 @@ class Main extends Component {
         })
       } else {
         this.setState({
-          productArray: this.shuffle(this.state.productArray)
-          // productArray: [1, 2, 3]
+          // productArray: this.shuffle(this.state.productArray)
+          productArray: [1, 2, 3]
         })
       }
     })
@@ -237,14 +253,19 @@ class Main extends Component {
   onPredictClick = () => {
     this.setState({
       marketer: true,
-      insights: false
+      insights: false,
+      variantColor4: this.state.variantColor4 === "secondary" ? "outline-info" : "secondary",
+      variantColor5: this.state.variantColor5 === "outline-info" ? "secondary" : "outline-info"
     })
   }
 
   onInsightClick = () => {
+    
     this.setState({
       marketer: false,
-      insights: true
+      insights: true,
+      variantColor4: this.state.variantColor4 === "secondary" ? "outline-info" : "secondary",
+      variantColor5: this.state.variantColor5 === "outline-info" ? "secondary" : "outline-info"
     })
   }
 
@@ -256,6 +277,16 @@ class Main extends Component {
     } else {
       this.setState({ view: s })
     }
+  }
+
+  showDiv1() {
+    this.setState({ wasOpened1: !this.state.wasOpened1, variantColor1: this.state.variantColor1 === "success" ? "dark" : "success" })
+  }
+  showDiv2() {
+    this.setState({ wasOpened2: !this.state.wasOpened2, variantColor2: this.state.variantColor2 === "success" ? "dark" : "success" })
+  }
+  showDiv3() {
+    this.setState({ wasOpened3: !this.state.wasOpened3, variantColor3: this.state.variantColor3 === "success" ? "dark" : "success" })
   }
 
   getMath(object, name) {
@@ -278,7 +309,11 @@ class Main extends Component {
   }
 
   render() {
+    console.log("channelProduct", this.state.channelProduct);
     const data = this.state.analytics;
+    const wasOpened1 = this.state.wasOpened1;
+    const wasOpened2 = this.state.wasOpened2;
+    const wasOpened3 = this.state.wasOpened3;
     console.log("error ", this.state.error);
     // var data = localStorage.getItem('analytics') ? localStorage.getItem('analytics') : this.state.analytics;
     var stackedProducts = this.state.stackedProducts;
@@ -315,8 +350,8 @@ class Main extends Component {
                     <br></br>
 
                     {this.state.role === 'admin' || this.state.role === 'campaign' ? (<span style={{ display: "inline-flex" }}>
-                      <Button variant="outline-info" onClick={this.onPredictClick}>Prediction Board</Button>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onInsightClick}>Data Insights</Button>
+                      <Button variant={this.state.variantColor4} onClick={this.onPredictClick}>Prediction Board</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <Button style={{ textAlign: "flex-inline" }} variant={this.state.variantColor5} onClick={this.onInsightClick}>Data Insights</Button>
                     </span>) : ""}<br></br><br></br>
 
                     <div>
@@ -350,15 +385,84 @@ class Main extends Component {
                                 </Toast.Header>
                                 {dataRow ? (<Toast.Body><div style={{ fontSize: "medium" }}><b>Target </b>: {dataRow.age} age group customers for product category {dataRow.product_1} at ({dataRow.time}) through channel {dataRow.channel}.</div> </Toast.Body>) : ""}
                               </Toast></div><br></br><br></br><br></br>
+                            <h6>Click/Unclick to see the different segment of users and their 4Rs:</h6>
+                            <br></br>
+                            <div id="myBtnContainer">
+                              <Button variant={this.state.variantColor1} className="btn" onClick={() => this.showDiv1()} > Segment 1</Button>&nbsp;&nbsp;
+                              <Button variant={this.state.variantColor2} className="btn" onClick={() => this.showDiv2()} > Segment 2</Button>&nbsp;&nbsp;
+                              <Button variant={this.state.variantColor3} className="btn" onClick={() => this.showDiv3()} > Segment 3</Button><br></br><br></br><hr></hr>
+                            </div>
+                            <div class="container">
+                              {wasOpened1 && (
+                                <div className="row flex-nowrap" id="filterDiv1" >
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right age for users</h5>
+                                    <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].age}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Content for users</h5>
+                                    <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].product_1}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Channel for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].channel}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].time}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Prediction accuracy</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[0].predict_conver * 100).toFixed(0)}%</h1>
+                                  </div>
+                                </div>
+                              )}
+                              {wasOpened2 && (
+                                <div className="row flex-nowrap" id="filterDiv2">
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right age for users</h5>
+                                    <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].age}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Content for users</h5>
+                                    <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].product_1}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Channel for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].channel}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].time}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Prediction accuracy</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[1].predict_conver * 100).toFixed(0)}%</h1>
+                                  </div>
+                                </div>)}
+                              {wasOpened3 && (
+                                <div className="row flex-nowrap" id="filterDiv3">
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right age for users</h5>
+                                    <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].age}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Content for users</h5>
+                                    <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].product_1}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Channel for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].channel}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].time}</h1>
+                                  </div>
+                                  <div className="card-label">
+                                    <h5 className="card-label-text">Prediction accuracy</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[2].predict_conver * 100).toFixed(0)}%</h1>
+                                  </div>
+                                </div>)}
+                            </div>
                             <div className="container label-pammer" style={{ marginTop: '-2rem' }}>
                               <Pie vals={this.state.analytics} /></div>
                           </div>)
                           : "Chart is loading..."} </div> : ""}
                     </div>
-
                     {(this.state.insights || this.state.view === 'datas') ?
                       <div>
-                        <Analytics rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
+                        <Analytics channelProduct={localStorage.getItem('channelProduct')} rendered={true} data={this.state.analytics} headers={headers} stackedProducts={this.state.stackedProducts}
                           feature={this.state.feature} role={this.state.role} view={this.state.view} confMatrix={this.state.confMatrix} timeBasedProducts={this.state.timeBasedProducts} />
 
                       </div> : ""}
@@ -368,7 +472,7 @@ class Main extends Component {
             </div>
 
             {(this.state.role === 'customer' || (this.state.role === 'admin' && this.state.view === 'customer')) ? (<div>
-              {this.state.productArray? <UserPage log={this.state.loggedIn} arrange={this.state.productArray} />: ""}</div>) : ""}
+              {this.state.productArray ? <UserPage log={this.state.loggedIn} arrange={this.state.productArray} /> : ""}</div>) : ""}
 
             {(this.state.insights || this.state.view === 'datas') ? <div>
               <br></br>

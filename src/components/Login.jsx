@@ -14,6 +14,7 @@ class Login extends Component {
         e.preventDefault();
         let username = this.state.username;
         let password = this.state.password;
+
         this.props.onSignIn(username, password);
     }
 

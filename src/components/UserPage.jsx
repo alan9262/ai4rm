@@ -61,7 +61,7 @@ class UserPage extends Component {
                             </Carousel.Item>
                         </Carousel>
                         <div>
-                            {(arrange[0] === 2 || age <=30) ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
+                            {(age <=30) ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
                             <div id="mobile">
                             <div className="scrollmenu">
                                 <div><img className="img" src={iphone11} alt=""></img></div>
@@ -90,7 +90,7 @@ class UserPage extends Component {
                                 <div><img className="img" src={beautycounter} alt=""></img></div>
                             </div>
                             </div>
-                            )</div> : <div>(<label className="label">Fashion and Cosmetics<Badge variant="secondary">New</Badge></label>
+                            )</div> : <div>(<label className="label">Fashion and Cosmetics<Badge variant="secondary">&nbsp;New</Badge></label>
                             <div id="fashion">
                             <div className="scrollmenu">
                                 <div><img className="img" src={chanel} alt=""></img></div>
@@ -100,7 +100,7 @@ class UserPage extends Component {
                                 <div><img className="img" src={beautycounter} alt=""></img></div>
                             </div>
                             </div>
-                            <label className="label">Cool Products<Badge variant="secondary">New</Badge></label>
+                            <label className="label">Cool Products<Badge variant="secondary">&nbsp;New</Badge></label>
                             <div id="cool">
                             <div className="scrollmenu">
                                 <div><img className="img" src={bed} alt=""></img></div>
@@ -109,7 +109,7 @@ class UserPage extends Component {
                                 <div><img className="img" src={slippers} alt=""></img></div>
                                 <div><img className="img" src={dyson} alt=""></img></div>
                             </div></div>
-                            <label className="label">Mobile and Eletronics<Badge variant="secondary">New</Badge></label>
+                            <label className="label">Mobile and Electronics<Badge variant="secondary">&nbsp;New</Badge></label>
                             <div id="mobile">
                             <div className="scrollmenu">
                                 <div><img className="img" src={iphone11} alt=""></img></div>

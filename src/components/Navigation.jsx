@@ -39,7 +39,7 @@ export default class Navigation extends Component {
                                         <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onCustomerCLick}>Customer</Button>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <Button style={{ textAlign: "flex-inline" }} variant="outline-info" onClick={this.onDataSClick}>Data Scientist</Button>
                                     </span>) : ""}
-
+                                    
                                 </Nav>
                                 <Form inline>
                                         <h6 style={{color: "aliceblue", margin: "auto"}}>Welcome, {user}!</h6>&nbsp;&nbsp;&nbsp;&nbsp;
