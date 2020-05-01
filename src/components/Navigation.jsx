@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Navbar from 'react-bootstrap/Navbar';
+import { Form, Button, Navbar } from 'react-bootstrap';
+// import Navbar from 'react-bootstrap/Navbar';
 import {
-    Nav,
-    Button
+    Nav
 } from 'reactstrap';
 
 export default class Navigation extends Component {

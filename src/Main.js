@@ -39,11 +39,11 @@ class Main extends Component {
       wasOpened1: true,
       wasOpened2: false,
       wasOpened3: false,
-      variantColor1: "success",
-      variantColor2: "dark",
-      variantColor3: "dark",
-      variantColor4: "secondary",
-      variantColor5: "outline-info",
+      variantColor1: 'success',
+      variantColor2: 'dark',
+      variantColor3: 'dark',
+      variantColor4: 'secondary',
+      variantColor5: 'outline-info',
       channelProduct: []
     };
   }
@@ -282,13 +282,13 @@ class Main extends Component {
   }
 
   showDiv1() {
-    this.setState({ wasOpened1: !this.state.wasOpened1, variantColor1: this.state.variantColor1 === "success" ? "dark" : "success" })
+    this.setState({ wasOpened1: !this.state.wasOpened1, variantColor1: this.state.variantColor1 === "success" ? "outline-info" : "success" })
   }
   showDiv2() {
-    this.setState({ wasOpened2: !this.state.wasOpened2, variantColor2: this.state.variantColor2 === "success" ? "dark" : "success" })
+    this.setState({ wasOpened2: !this.state.wasOpened2, variantColor2: this.state.variantColor2 === "success" ? "outline-info" : "success" })
   }
   showDiv3() {
-    this.setState({ wasOpened3: !this.state.wasOpened3, variantColor3: this.state.variantColor3 === "success" ? "dark" : "success" })
+    this.setState({ wasOpened3: !this.state.wasOpened3, variantColor3: this.state.variantColor3 === "success" ? "outline-info" : "success" })
   }
 
   getMath(object, name) {
