@@ -42,6 +42,7 @@ export default class ChannelTrend extends Component {
                     options={{
                         title: 'Which channel are we using the most?',
                         legend: { position: 'absolute' },
+                        enableInteractivity: true
                     }}
                     rootProps={{ 'data-testid': '2' }}
                 />) : ""}

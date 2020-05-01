@@ -61,7 +61,7 @@ class UserPage extends Component {
                             </Carousel.Item>
                         </Carousel>
                         <div>
-                            {(age <=30) ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
+                            {(arrange[0] === 1) ? <div>(<label className="label">Mobile and Electronics&nbsp;<Badge variant="secondary">New</Badge></label>
                             <div id="mobile">
                             <div className="scrollmenu">
                                 <div><img className="img" src={iphone11} alt=""></img></div>

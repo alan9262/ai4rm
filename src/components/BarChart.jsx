@@ -6,6 +6,7 @@ export default class BarChart extends PureComponent {
     render() {
         const { data } = this.props;
         return (
+
             <Chart
                 width={'600px'}
                 height={'400px'}
@@ -25,14 +26,15 @@ export default class BarChart extends PureComponent {
                 ]}
                 options={{
                     // Material design options
+                    title: 'How we are targeting the right people?',
+                    legend: { position: 'absolute' },
                     chart: {
-                        title: 'Attribute Significance for prediction',
                         subtitle: 'How each attribute based on user data contributes to a prediction',
                     },
                     animation: {
                         startup: true,
                         easing: 'linear',
-                        duration: 3000,
+                        duration: 2000,
                       },
                       enableInteractivity: true,
                     }}
@@ -40,7 +42,6 @@ export default class BarChart extends PureComponent {
                       {
                         eventName: 'animationfinish',
                         callback: () => {
-                          console.log('Animation Finished')
                         },
                       },
                     ]}

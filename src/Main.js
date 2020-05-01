@@ -102,6 +102,7 @@ class Main extends Component {
   }
 
   shuffle(array) {
+    console.log("array before shuffle ", array);
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
@@ -116,7 +117,7 @@ class Main extends Component {
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-
+    console.log("array after shuffle ", array);
     return array;
   }
 
@@ -152,9 +153,10 @@ class Main extends Component {
           productArray: [2, 3, 1]
         })
       } else {
+        var array = this.shuffle(this.state.productArray);
         this.setState({
-          // productArray: this.shuffle(this.state.productArray)
-          productArray: [1, 2, 3]
+          productArray: array
+          // productArray: [1, 2, 3]
         })
       }
     })

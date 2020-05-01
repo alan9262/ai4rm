@@ -83,7 +83,7 @@ export default class StackedColumnChart extends Component {
                 ]}
 
                 options={{
-                    title: 'Cluster wise breakdown of products',
+                    title: 'User segment breakdown of products',
                     chartArea: { width: '50%' },
 
                     hAxis: {
