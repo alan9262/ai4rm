@@ -15,6 +15,7 @@ import organic_oil from '../src/images/organic_oil.jpeg';
 import Tabular from '../src/components/Tabular';
 import RFTable from '../src/components/RFTable';
 import MatrixTable from '../src/components/MatrixTable';
+import { local } from 'd3-selection';
 
 class Main extends Component {
   constructor(props) {
@@ -68,28 +69,40 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    Promise.all([
-      fetch("/getTimeBasedProducts", {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
 
-      }),
-      fetch("/getConfusionMatrix", {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
+    // if (localStorage.getItem('loggedIn') === "true") {
+    //   this.setState({
+    //     stackedProducts: localStorage.getItem('stackedProducts'),
+    //     result: localStorage.getItem('result'),
+    //     analytics: localStorage.getItem('analytics'),
+    //     // localStorage.setItem('stackedProducts', this.state.stackedProducts);
+    //     feature: localStorage.getItem('feature'),
+    //     user: localStorage.getItem('user'),
+    //     role: localStorage.getItem('ROLE')
+    //   })
+    // } else {
+      Promise.all([
+        fetch("/getTimeBasedProducts", {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
 
-      })
-    ])
-      .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-      .then(([data1, data2]) => this.setState({
-        timeBasedProducts: data1,
-        confMatrix: data2,
-        marketer: true
-      }));
+        }),
+        fetch("/getConfusionMatrix", {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+
+        })
+      ])
+        .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+        .then(([data1, data2]) => this.setState({
+          timeBasedProducts: data1,
+          confMatrix: data2,
+          marketer: true
+        }));
 
       Promise.all([
         fetch("/getChannel")
@@ -98,11 +111,15 @@ class Main extends Component {
         .then(([data1]) => this.setState({
           channelProduct: data1
         }));
-        localStorage.setItem('channelProduct', this.state.channelProduct)
+      localStorage.setItem('channelProduct', this.state.channelProduct)
+      this.signIn();
+    // }
+
+
   }
 
   shuffle(array) {
-    console.log("array before shuffle ", array);
+    // console.log("array before shuffle ", array);
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
@@ -117,7 +134,7 @@ class Main extends Component {
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-    console.log("array after shuffle ", array);
+    // console.log("array after shuffle ", array);
     return array;
   }
 
@@ -160,7 +177,7 @@ class Main extends Component {
         })
       }
     })
-    console.log("productArray", this.state.productArray);
+    // console.log("productArray", this.state.productArray);
 
     if (this.state.usernames.includes(username) && (this.state.passwords.includes(password))) {
       this.setState({
@@ -177,11 +194,7 @@ class Main extends Component {
             role: row.role,
             loggedIn: true
           })
-          return;
-        } else if (row.username !== username || row.password !== password) {
-          this.setState({
-            error: "Please enter a valid username/password!"
-          })
+          
         }
       })
 
@@ -192,20 +205,22 @@ class Main extends Component {
       this.setState({
         clusters: cluster
       })
+      localStorage.setItem('stackedProducts', this.state.stackedProducts);
+      localStorage.setItem('result', this.state.result);
+      localStorage.setItem('analytics', this.state.analytics);
       // localStorage.setItem('stackedProducts', this.state.stackedProducts);
-      // localStorage.setItem('result', this.state.result);
-      // localStorage.setItem('analytics', this.state.analytics);
-      // // localStorage.setItem('stackedProducts', this.state.stackedProducts);
-      // localStorage.setItem('feature', this.state.feature);
-      // localStorage.setItem('username', this.state.user.username);
-      // localStorage.setItem('user', this.state.user);
-      // localStorage.setItem('loggedIn', this.state.loggedIn);
-      // localStorage.setItem('ROLE', this.state.role);
+      localStorage.setItem('feature', this.state.feature);
+      localStorage.setItem('username', this.state.user.username);
+      localStorage.setItem('user', this.state.user);
+      console.log("this.state.loggedIn ", this.state.loggedIn)
+      localStorage.setItem('loggedIn', this.state.loggedIn);
+      localStorage.setItem('ROLE', this.state.role);
     }
   }
 
 
   toggleOpenFunction() {
+    localStorage.clear();
     this.setState({
       user: {},
       role: "",
@@ -220,7 +235,18 @@ class Main extends Component {
       stackedProducts: {},
       marketer: true,
       insights: false,
-      productArray: [2, 3, 1]
+      productArray: [2, 3, 1],
+      error: "",
+      age: 0,
+      wasOpened1: true,
+      wasOpened2: false,
+      wasOpened3: false,
+      variantColor1: 'success',
+      variantColor2: 'dark',
+      variantColor3: 'dark',
+      variantColor4: 'secondary',
+      variantColor5: 'outline-info',
+      channelProduct: []
     });
     return <Login onSignIn={this.signIn.bind(this)} />
   }
@@ -262,7 +288,7 @@ class Main extends Component {
   }
 
   onInsightClick = () => {
-    
+
     this.setState({
       marketer: false,
       insights: true,
@@ -311,12 +337,12 @@ class Main extends Component {
   }
 
   render() {
-    console.log("channelProduct", this.state.channelProduct);
+    // console.log("channelProduct", this.state.channelProduct);
     const data = this.state.analytics;
     const wasOpened1 = this.state.wasOpened1;
     const wasOpened2 = this.state.wasOpened2;
     const wasOpened3 = this.state.wasOpened3;
-    console.log("error ", this.state.error);
+    // console.log("error ", this.state.error);
     // var data = localStorage.getItem('analytics') ? localStorage.getItem('analytics') : this.state.analytics;
     var stackedProducts = this.state.stackedProducts;
     const feature = this.state.feature;
@@ -412,7 +438,7 @@ class Main extends Component {
                                     <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[0].time}</h1>
                                   </div>
                                   <div className="card-label">
-                                    <h5 className="card-label-text">Prediction accuracy</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[0].predict_conver * 100).toFixed(0)}%</h1>
+                                    <h5 className="card-label-text">Conversion prediction</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[0].predict_conver * 100).toFixed(0)}%</h1>
                                   </div>
                                 </div>
                               )}
@@ -433,7 +459,7 @@ class Main extends Component {
                                     <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[1].time}</h1>
                                   </div>
                                   <div className="card-label">
-                                    <h5 className="card-label-text">Prediction accuracy</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[1].predict_conver * 100).toFixed(0)}%</h1>
+                                    <h5 className="card-label-text">Conversion prediction</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[1].predict_conver * 100).toFixed(0)}%</h1>
                                   </div>
                                 </div>)}
                               {wasOpened3 && (
@@ -453,7 +479,7 @@ class Main extends Component {
                                     <h5 className="card-label-text">Right Time for users</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{data[2].time}</h1>
                                   </div>
                                   <div className="card-label">
-                                    <h5 className="card-label-text">Prediction accuracy</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[2].predict_conver * 100).toFixed(0)}%</h1>
+                                    <h5 className="card-label-text">Conversion prediction</h5> <h1 style={{ textAlign: "center", color: "green" }}><br></br>{(data[2].predict_conver * 100).toFixed(0)}%</h1>
                                   </div>
                                 </div>)}
                             </div>

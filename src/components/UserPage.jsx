@@ -32,7 +32,7 @@ class UserPage extends Component {
             log = this.props.log;
         }
         const { arrange, age } = this.props;
-        console.log("arrange, age arrange, age ---" , arrange, age);
+        // console.log("arrange, age arrange, age ---" , arrange, age);
         return (
             <div>
                 {log ?

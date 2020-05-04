@@ -11,7 +11,7 @@ export default class StackedColumnChart extends Component {
         var ob1 = [];
         var ob = [];
         let i =0;
-        console.log("here in stackedProducts", clusters);
+        // console.log("here in stackedProducts", clusters);
         for (var key of Object.keys(stackedProducts)) {
             if (key !== "_id") {
                 ob1.push("Top" + " " + key.channel + " " + key.product_1 + " buyers");
@@ -21,7 +21,7 @@ export default class StackedColumnChart extends Component {
 
         var products = stackedProducts;
         delete products["_id"];
-        console.log("products  ", products);
+        // console.log("products  ", products);
 
         // let coolStuff = Object.values(products).reduce((t, {Cool Stuff}) => t + value, 0)
 
@@ -41,7 +41,7 @@ export default class StackedColumnChart extends Component {
             }
 
         }
-        console.log("myMap  ", myMap);
+        // console.log("myMap  ", myMap);
         let list = [];
 
         list.push(['Product', 'Cluster 1', 'Cluster 2', 'Cluster 3']);
@@ -67,7 +67,7 @@ export default class StackedColumnChart extends Component {
         //     [ob[1], vals[9][0], vals[9][1], vals[9][2]],
         //     [ob[2], vals[13][0], vals[13][1], vals[13][2]]
         // ]}
-        console.log("vals   ", vals, ob);
+        // console.log("vals   ", vals, ob);
         //use key and value here
         return (
             <Chart

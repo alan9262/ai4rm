@@ -58,7 +58,7 @@ export default class Analytics extends Component {
 
         const { data, stackedProducts, feature, channelProduct } = this.props;
         const { timeBasedProducts } = this.state;
-        console.log("channelProduct")
+        // console.log("channelProduct")
         let dataRow = data.reduce(function (prev, current) {
             return (prev.y > current.y) ? prev : current
         })
@@ -66,7 +66,7 @@ export default class Analytics extends Component {
         let headings = ["Age", "Interest Channel", "Gender", "Session duration", "Season", "Product Category", "Quantity",
             "Clicks", "Impression"];
 
-        console.log(this.wasOpened)
+        // console.log(this.wasOpened)
         return (
             <div>
                 <br></br>
