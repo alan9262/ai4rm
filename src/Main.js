@@ -228,7 +228,6 @@ class Main extends Component {
       loggedIn: false,
       result: [],
       analytics: [],
-      timeBasedProducts: [],
       confMatrix: [],
       view: "",
       error: "",
@@ -246,7 +245,6 @@ class Main extends Component {
       variantColor3: 'dark',
       variantColor4: 'secondary',
       variantColor5: 'outline-info',
-      channelProduct: []
     });
     return <Login onSignIn={this.signIn.bind(this)} />
   }
